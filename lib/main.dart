@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:swagger_dart_code_generator/swagger_dart_code_generator.dart';
+
 void main() {
   runApp(const MyApp());
 }
