@@ -37,6 +37,9 @@ dependencies:
 
   chopper: ^6.1.1
   json_annotation: ^4.8.0
+  freezed: ^2.4.7
+  gap: ^3.0.1
+  riverpod: ^2.5.1
 
 dev_dependencies:
   flutter_test:
