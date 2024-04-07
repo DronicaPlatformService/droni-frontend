@@ -20,13 +20,21 @@ class HomeFragment extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(
-            children: [
-              IconButton(
-                onPressed: () => openDrawer(context),
-                icon: const Icon(Icons.menu),
-              )
-            ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SvgPicture.asset(
+                  'assets/image/logo.svg',
+                  height: 24,
+                ),
+                SvgPicture.asset(
+                  'assets/image/icon/notification_unread_true.svg',
+                  height: 26,
+                )
+              ],
+            ),
           ),
           const EmptyExpanded(),
           RoundButton(

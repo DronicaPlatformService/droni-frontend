@@ -43,6 +43,7 @@ class AppState extends State<App> with Nav, WidgetsBindingObserver {
           navigatorKey: App.navigatorKey,
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
+          debugShowCheckedModeBanner: false,
           locale: context.locale,
           title: 'Image Finder',
           theme: context.themeType.themeData,
