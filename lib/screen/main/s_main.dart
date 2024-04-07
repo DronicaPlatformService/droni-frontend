@@ -4,8 +4,6 @@ import 'package:droni/screen/main/tab/tab_item.dart';
 import 'package:droni/screen/main/tab/tab_navigator.dart';
 import '../../common/common.dart';
 
-import 'w_menu_drawer.dart';
-
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
@@ -41,7 +39,6 @@ class MainScreenState extends State<MainScreen>
       onPopInvoked: _handleBackPressed,
       child: Scaffold(
         extendBody: extendBody, //bottomNavigationBar 아래 영역 까지 그림
-        drawer: const MenuDrawer(),
         body: Container(
           color: context.appColors.seedColor.getMaterialColorValues[200],
           padding: EdgeInsets.only(
