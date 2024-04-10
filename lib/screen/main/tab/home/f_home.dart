@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:droni/common/common.dart';
-import 'package:droni/common/widget/round_button_theme.dart';
-import 'package:droni/common/widget/w_round_button.dart';
-import 'package:droni/screen/dialog/d_message.dart';
-import '../../../dialog/d_color_bottom.dart';
-import '../../../dialog/d_confirm.dart';
 
 class HomeFragment extends StatelessWidget {
   const HomeFragment({
@@ -15,104 +10,88 @@ class HomeFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: context.appColors.seedColor.getMaterialColorValues[100],
+      color: Colors.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SvgPicture.asset(
-                  'assets/image/logo.svg',
-                  height: 24,
-                ),
-                SvgPicture.asset(
-                  'assets/image/icon/notification_unread_true.svg',
-                  height: 26,
-                )
-              ],
-            ),
-          ),
-          const EmptyExpanded(),
-          RoundButton(
-            text: 'Snackbar 보이기',
-            onTap: () => showSnackbar(context),
-            theme: RoundButtonTheme.blue,
-          ),
-          const Height(20),
-          RoundButton(
-            text: 'Confirm 다이얼로그',
-            onTap: () => showConfirmDialog(context),
-            theme: RoundButtonTheme.whiteWithBlueBorder,
-          ),
-          const Height(20),
-          RoundButton(
-            text: 'Message 다이얼로그',
-            onTap: showMessageDialog,
-            theme: RoundButtonTheme.whiteWithBlueBorder,
-          ),
-          const Height(20),
-          RoundButton(
-            text: '메뉴 보기',
-            onTap: () => openDrawer(context),
-            theme: RoundButtonTheme.blink,
-          ),
-          const EmptyExpanded()
+          header(),
+          Container(
+            decoration: const BoxDecoration(color: Colors.grey),
+            height: 140,
+            child: const Center(child: Text('Banner')),
+          )
         ],
       ),
     );
   }
 
-  void showSnackbar(BuildContext context) {
-    context.showSnackbar('snackbar 입니다.',
-        extraButton: Tap(
-          onTap: () {
-            context.showErrorSnackbar('error');
-          },
-          child: '에러 보여주기 버튼'
-              .text
-              .white
-              .size(13)
-              .make()
-              .centered()
-              .pSymmetric(h: 10, v: 5),
-        ));
+  Padding header() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          SvgPicture.asset(
+            'assets/image/logo.svg',
+            height: 24,
+          ),
+          SvgPicture.asset(
+            'assets/image/icon/notification_unread_true.svg',
+            height: 26,
+          )
+        ],
+      ),
+    );
   }
 
-  Future<void> showConfirmDialog(BuildContext context) async {
-    final confirmDialogResult = await ConfirmDialog(
-      '오늘 기분이 좋나요?',
-      buttonText: "네",
-      cancelButtonText: "아니오",
-    ).show();
-    debugPrint(confirmDialogResult?.isSuccess.toString());
+  // void showSnackbar(BuildContext context) {
+  //   context.showSnackbar('snackbar 입니다.',
+  //       extraButton: Tap(
+  //         onTap: () {
+  //           context.showErrorSnackbar('error');
+  //         },
+  //         child: '에러 보여주기 버튼'
+  //             .text
+  //             .white
+  //             .size(13)
+  //             .make()
+  //             .centered()
+  //             .pSymmetric(h: 10, v: 5),
+  //       ));
+  // }
 
-    confirmDialogResult?.runIfSuccess((data) {
-      ColorBottomSheet(
-        '❤️',
-        context: context,
-        backgroundColor: Colors.yellow.shade200,
-      ).show();
-    });
+  // Future<void> showConfirmDialog(BuildContext context) async {
+  //   final confirmDialogResult = await ConfirmDialog(
+  //     '오늘 기분이 좋나요?',
+  //     buttonText: "네",
+  //     cancelButtonText: "아니오",
+  //   ).show();
+  //   debugPrint(confirmDialogResult?.isSuccess.toString());
 
-    confirmDialogResult?.runIfFailure((data) {
-      ColorBottomSheet(
-        '❤️힘내여',
-        backgroundColor: Colors.yellow.shade300,
-        textColor: Colors.redAccent,
-      ).show();
-    });
-  }
+  //   confirmDialogResult?.runIfSuccess((data) {
+  //     ColorBottomSheet(
+  //       '❤️',
+  //       context: context,
+  //       backgroundColor: Colors.yellow.shade200,
+  //     ).show();
+  //   });
 
-  Future<void> showMessageDialog() async {
-    final result = await MessageDialog("안녕하세요").show();
-    debugPrint(result.toString());
-  }
+  //   confirmDialogResult?.runIfFailure((data) {
+  //     ColorBottomSheet(
+  //       '❤️힘내여',
+  //       backgroundColor: Colors.yellow.shade300,
+  //       textColor: Colors.redAccent,
+  //     ).show();
+  //   });
+  // }
 
-  void openDrawer(BuildContext context) {
-    Scaffold.of(context).openDrawer();
-  }
+  // Future<void> showMessageDialog() async {
+  //   final result = await MessageDialog("안녕하세요").show();
+  //   debugPrint(result.toString());
+  // }
+
+  // void openDrawer(BuildContext context) {
+  //   Scaffold.of(context).openDrawer();
+  // }
 }
