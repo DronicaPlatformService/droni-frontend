@@ -14,7 +14,13 @@ class MainScreen extends StatefulWidget {
 class MainScreenState extends State<MainScreen>
     with SingleTickerProviderStateMixin {
   TabItem _currentTab = TabItem.home;
-  final tabs = [TabItem.home, TabItem.favorite];
+  final tabs = [
+    TabItem.home,
+    TabItem.findPilots,
+    TabItem.estimates,
+    TabItem.chatting,
+    TabItem.myPage
+  ];
   final List<GlobalKey<NavigatorState>> navigatorKeys = [];
 
   int get _currentIndex => tabs.indexOf(_currentTab);
@@ -73,10 +79,6 @@ class MainScreenState extends State<MainScreen>
       ),
     );
   }
-  //   child: Row(
-  //   children: [
-  //   ],
-  // ),
 
   bool get isRootPage =>
       _currentTab == TabItem.home &&
@@ -108,28 +110,15 @@ class MainScreenState extends State<MainScreen>
   }
 
   Widget _buildBottomNavigationBar(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        boxShadow: [
-          BoxShadow(color: Colors.black26, spreadRadius: 0, blurRadius: 10),
-        ],
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(bottomNavigationBarBorderRadius),
-          topRight: Radius.circular(bottomNavigationBarBorderRadius),
-        ),
-        child: BottomNavigationBar(
-          items: navigationBarItems(context),
-          currentIndex: _currentIndex,
-          selectedItemColor: context.appColors.text,
-          unselectedItemColor: context.appColors.iconButtonInactivate,
-          onTap: _handleOnTapNavigationBarItem,
-          showSelectedLabels: true,
-          showUnselectedLabels: true,
-          type: BottomNavigationBarType.fixed,
-        ),
-      ),
+    return BottomNavigationBar(
+      items: navigationBarItems(context),
+      currentIndex: _currentIndex,
+      selectedItemColor: context.appColors.text,
+      unselectedItemColor: context.appColors.iconButtonInactivate,
+      onTap: _handleOnTapNavigationBarItem,
+      showSelectedLabels: true,
+      showUnselectedLabels: true,
+      type: BottomNavigationBarType.fixed,
     );
   }
 
