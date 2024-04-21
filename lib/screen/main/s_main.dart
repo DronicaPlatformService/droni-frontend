@@ -49,9 +49,34 @@ class MainScreenState extends State<MainScreen>
           ),
         ),
         bottomNavigationBar: _buildBottomNavigationBar(context),
+        floatingActionButton: FloatingActionButton.extended(
+          backgroundColor: const Color(0xFF1660FF),
+          foregroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(40),
+          ),
+          extendedPadding: const EdgeInsets.symmetric(
+            horizontal: 14,
+            vertical: 10,
+          ),
+          label: const Text(
+            '견적요청',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+          icon: SvgPicture.asset(
+            'assets/image/icon/assignment_add.svg',
+            width: 24,
+            colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+          ),
+          onPressed: () => {},
+        ),
       ),
     );
   }
+  //   child: Row(
+  //   children: [
+  //   ],
+  // ),
 
   bool get isRootPage =>
       _currentTab == TabItem.home &&
