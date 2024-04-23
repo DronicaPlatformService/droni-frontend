@@ -14,7 +14,13 @@ class MainScreen extends StatefulWidget {
 class MainScreenState extends State<MainScreen>
     with SingleTickerProviderStateMixin {
   TabItem _currentTab = TabItem.home;
-  final tabs = [TabItem.home, TabItem.favorite];
+  final tabs = [
+    TabItem.home,
+    TabItem.findPilots,
+    TabItem.estimates,
+    TabItem.chatting,
+    TabItem.myPage
+  ];
   final List<GlobalKey<NavigatorState>> navigatorKeys = [];
 
   int get _currentIndex => tabs.indexOf(_currentTab);
@@ -49,6 +55,27 @@ class MainScreenState extends State<MainScreen>
           ),
         ),
         bottomNavigationBar: _buildBottomNavigationBar(context),
+        floatingActionButton: FloatingActionButton.extended(
+          backgroundColor: const Color(0xFF1660FF),
+          foregroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(40),
+          ),
+          extendedPadding: const EdgeInsets.symmetric(
+            horizontal: 14,
+            vertical: 10,
+          ),
+          label: const Text(
+            '견적요청',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+          icon: SvgPicture.asset(
+            'assets/image/icon/assignment_add.svg',
+            width: 24,
+            colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+          ),
+          onPressed: () => {},
+        ),
       ),
     );
   }
@@ -83,28 +110,15 @@ class MainScreenState extends State<MainScreen>
   }
 
   Widget _buildBottomNavigationBar(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        boxShadow: [
-          BoxShadow(color: Colors.black26, spreadRadius: 0, blurRadius: 10),
-        ],
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(bottomNavigationBarBorderRadius),
-          topRight: Radius.circular(bottomNavigationBarBorderRadius),
-        ),
-        child: BottomNavigationBar(
-          items: navigationBarItems(context),
-          currentIndex: _currentIndex,
-          selectedItemColor: context.appColors.text,
-          unselectedItemColor: context.appColors.iconButtonInactivate,
-          onTap: _handleOnTapNavigationBarItem,
-          showSelectedLabels: true,
-          showUnselectedLabels: true,
-          type: BottomNavigationBarType.fixed,
-        ),
-      ),
+    return BottomNavigationBar(
+      items: navigationBarItems(context),
+      currentIndex: _currentIndex,
+      selectedItemColor: context.appColors.text,
+      unselectedItemColor: context.appColors.iconButtonInactivate,
+      onTap: _handleOnTapNavigationBarItem,
+      showSelectedLabels: true,
+      showUnselectedLabels: true,
+      type: BottomNavigationBarType.fixed,
     );
   }
 
