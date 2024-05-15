@@ -279,7 +279,7 @@ class HomeFragment extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SvgPicture.asset(
-            'assets/image/logo.svg',
+            'assets/image/logo_with_text.svg',
             height: 24,
           ),
           SvgPicture.asset(
