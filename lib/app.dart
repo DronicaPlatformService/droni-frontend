@@ -1,3 +1,4 @@
+import 'package:droni/screen/login/s_login.dart';
 import 'package:flutter/material.dart';
 
 import 'package:droni/screen/main/s_main.dart';
@@ -47,7 +48,7 @@ class AppState extends State<App> with Nav, WidgetsBindingObserver {
           locale: context.locale,
           title: 'Image Finder',
           theme: context.themeType.themeData,
-          home: const MainScreen(),
+          home: const LoginScreen(),
         );
       }),
     );
