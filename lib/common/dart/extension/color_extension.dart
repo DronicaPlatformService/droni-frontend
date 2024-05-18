@@ -2,7 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-import 'package:droni/app.dart';
+import 'package:droni/main.dart';
 import 'package:droni/common/dart/extension/context_extension.dart';
 
 extension ColorExtension on Color {

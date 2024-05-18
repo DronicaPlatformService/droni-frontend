@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../app.dart';
+import '../../main.dart';
 import '../common.dart';
 
 enum Language {
