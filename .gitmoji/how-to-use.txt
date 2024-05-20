@@ -1,0 +1,27 @@
+gitmoji를 사용해 커밋 메시지를 작성합니다.
+
+0. 현재 프로젝트에 template이 등록되어있을 경우 삭제
+- terminal
+- git config --local --unset commit.template
+
+1. gitmoji-cli 설치 (vscode를 사용할 경우 extension이 존재합니다.)
+
+- gitmoji-cli github
+- https://github.com/carloscuesta/gitmoji-cli
+
+- brew
+- brew install gitmoji
+
+- npm
+- npm i -g gitmoji-cli
+
+2. gitmoji-cli를 이용해 commit하기
+
+- terminal
+- gitmoji -c
+
+* git commit으로 gitmoji -c 작동시키는 법
+- terminal
+- gitmoji -i
+커맨드 입력후 `git commit`을 터미널에 입력시 gitmoji -c와 동일하게 동작합니다.
+(github Hook 부분 참고)
