@@ -1,5 +1,9 @@
 gitmoji를 사용해 커밋 메시지를 작성합니다.
 
+0. 현재 프로젝트에 template이 등록되어있을 경우 삭제
+- terminal
+- git config --local --unset commit.template
+
 1. gitmoji-cli 설치 (vscode를 사용할 경우 extension이 존재합니다.)
 
 - gitmoji-cli github
