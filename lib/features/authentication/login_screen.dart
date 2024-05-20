@@ -1,7 +1,6 @@
+import 'package:gap/gap.dart';
 import 'package:flutter/material.dart';
 import 'package:droni/common/common.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -24,12 +23,12 @@ class LoginScreen extends StatelessWidget {
                       'assets/image/logo.svg',
                       width: 90,
                     ),
-                    const Height(24),
+                    const Gap(24),
                     const Text(
                       '당신 근처의 드로니',
                       style: system01,
                     ),
-                    const Height(6),
+                    const Gap(6),
                     const Text(
                       '드로니는 드론방제 서비스 앱이에요.\n내 동네를 설정하고 시작해보세요!',
                       style: system08,
@@ -57,7 +56,7 @@ class LoginScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const Height(8),
+                  const Gap(8),
                   Container(
                     width: double.infinity,
                     height: 54,
