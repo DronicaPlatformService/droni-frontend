@@ -66,8 +66,16 @@ const system10 = TextStyle(
   height: 18 / 12,
   fontFamily: 'SpoqaHanSansNeo',
 );
-const system11 =
-    TextStyle(fontWeight: FontWeight.bold, fontSize: 10, height: 14 / 10);
-const system12 = TextStyle(fontSize: 10, height: 14 / 10);
+const system11 = TextStyle(
+  fontWeight: FontWeight.bold,
+  fontSize: 10,
+  height: 14 / 10,
+  fontFamily: 'SpoqaHanSansNeo',
+);
+const system12 = TextStyle(
+  fontSize: 10,
+  height: 14 / 10,
+  fontFamily: 'SpoqaHanSansNeo',
+);
 
 void voidFunction() {}
