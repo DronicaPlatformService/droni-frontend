@@ -1,18 +1,20 @@
-import 'package:droni/common/dart/extension/context_extension.dart';
+// import 'package:droni/common/dart/extension/context_extension.dart';
 import 'package:droni/common/theme/custom_theme.dart';
-import 'package:droni/common/theme/custom_theme_app.dart';
-import 'package:droni/screen/login/s_login.dart';
+// import 'package:droni/common/theme/custom_theme_app.dart';
+// import 'package:droni/screen/login/s_login.dart';
 import 'package:flutter/material.dart';
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:nav/nav.dart';
 
-import 'common/data/preference/app_preferences.dart';
+import 'features/authentication/login_screen.dart';
+// import 'package:nav/nav.dart';
+
+// import 'common/data/preference/app_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  await AppPreferences.init();
+  // await AppPreferences.init();
 
   runApp(
     EasyLocalization(
@@ -38,7 +40,7 @@ class App extends StatefulWidget {
   State<App> createState() => AppState();
 }
 
-class AppState extends State<App> with Nav, WidgetsBindingObserver {
+class AppState extends State<App> with WidgetsBindingObserver {
   @override
   GlobalKey<NavigatorState> get navigatorKey => App.navigatorKey;
 
@@ -56,20 +58,21 @@ class AppState extends State<App> with Nav, WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return CustomThemeApp(
-      child: Builder(builder: (context) {
-        return MaterialApp(
-          navigatorKey: App.navigatorKey,
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          debugShowCheckedModeBanner: false,
-          locale: context.locale,
-          title: 'Image Finder',
-          theme: context.themeType.themeData,
-          home: const LoginScreen(),
-        );
-      }),
+    return MaterialApp(
+      navigatorKey: App.navigatorKey,
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      debugShowCheckedModeBanner: false,
+      locale: context.locale,
+      title: 'Image Finder',
+      // theme: context.themeType.themeData,
+      home: const LoginScreen(),
     );
+
+    // return CustomThemeApp(
+    //   child: Builder(builder: (context) {
+    //     return       }),
+    // );
   }
 
   @override
