@@ -1,6 +1,7 @@
 import 'package:gap/gap.dart';
 import 'package:flutter/material.dart';
-import 'package:droni/common/common.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:droni/constants/text_style.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
