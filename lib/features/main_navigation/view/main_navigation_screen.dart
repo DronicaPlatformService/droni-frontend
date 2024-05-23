@@ -1,4 +1,4 @@
-import 'package:droni/features/main_navigation/widgets/nav_tab.dart';
+import 'package:droni/features/main_navigation/view/widgets/nav_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:droni/features/customer_home/view/home_screen.dart';
 
