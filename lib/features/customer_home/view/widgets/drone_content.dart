@@ -1,5 +1,7 @@
+import 'package:droni/shared/constants/app_colors.dart';
+import 'package:droni/shared/constants/text_style.dart';
+import 'package:droni/shared/widgets/svg_icon.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 
 class DroneContent extends StatelessWidget {
@@ -11,19 +13,13 @@ class DroneContent extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 24),
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  '드론관련 콘텐츠',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                ),
-                SvgPicture.asset('assets/image/icon/chevron_right.svg')
+                Text('드론관련 콘텐츠', style: system03),
+                SvgIcon(icon: 'assets/image/icon/chevron_right.svg')
               ],
             ),
           ),
@@ -48,10 +44,7 @@ class DroneContent extends StatelessWidget {
                     const Gap(12),
                     Text(
                       '드론콘텐츠 제목은 2줄까지 노출합니다!',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey[600],
-                      ),
+                      style: system08.copyWith(color: AppColors.droniGray600),
                       overflow: TextOverflow.clip,
                     ),
                   ],

@@ -1,6 +1,6 @@
-import 'package:droni/constants/app_colors.dart';
-import 'package:droni/constants/svg_icon.dart';
-import 'package:droni/constants/text_style.dart';
+import 'package:droni/shared/constants/app_colors.dart';
+import 'package:droni/shared/widgets/svg_icon.dart';
+import 'package:droni/shared/constants/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 

@@ -1,7 +1,7 @@
+import 'package:droni/shared/widgets/svg_icon.dart';
 import 'package:gap/gap.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:droni/constants/text_style.dart';
+import 'package:droni/shared/constants/text_style.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -15,22 +15,22 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Flexible(
+              const Flexible(
                 flex: 1,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SvgPicture.asset(
-                      'assets/image/logo.svg',
+                    SvgIcon(
+                      icon: 'assets/image/logo.svg',
                       width: 90,
                     ),
-                    const Gap(24),
-                    const Text(
+                    Gap(24),
+                    Text(
                       '당신 근처의 드로니',
                       style: system01,
                     ),
-                    const Gap(6),
-                    const Text(
+                    Gap(6),
+                    Text(
                       '드로니는 드론방제 서비스 앱이에요.\n내 동네를 설정하고 시작해보세요!',
                       style: system08,
                     ),

@@ -1,7 +1,7 @@
 // import 'package:droni/theme/custom_theme.dart';
 import 'package:droni/features/main_navigation/view/main_navigation_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:droni/themes/app_theme.dart';
+import 'package:droni/shared/themes/app_theme.dart';
 import 'features/authentication/view/login_screen.dart';
 // import 'package:nav/nav.dart';
 
