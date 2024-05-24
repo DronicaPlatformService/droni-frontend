@@ -7,6 +7,7 @@ const system01 = TextStyle(
   fontFamily: 'SpoqaHanSansNeo',
 );
 const system02 = TextStyle(
+  fontWeight: FontWeight.w500,
   fontSize: 20,
   height: 28 / 20,
   fontFamily: 'SpoqaHanSansNeo',
@@ -18,6 +19,7 @@ const system03 = TextStyle(
   fontFamily: 'SpoqaHanSansNeo',
 );
 const system04 = TextStyle(
+  fontWeight: FontWeight.w500,
   fontSize: 18,
   height: 26 / 18,
   fontFamily: 'SpoqaHanSansNeo',
@@ -29,6 +31,7 @@ const system05 = TextStyle(
   fontFamily: 'SpoqaHanSansNeo',
 );
 const system06 = TextStyle(
+  fontWeight: FontWeight.w500,
   fontSize: 16,
   height: 24 / 16,
   fontFamily: 'SpoqaHanSansNeo',
@@ -40,6 +43,7 @@ const system07 = TextStyle(
   fontFamily: 'SpoqaHanSansNeo',
 );
 const system08 = TextStyle(
+  fontWeight: FontWeight.w500,
   fontSize: 14,
   height: 20 / 14,
   fontFamily: 'SpoqaHanSansNeo',
@@ -51,6 +55,7 @@ const system09 = TextStyle(
   fontFamily: 'SpoqaHanSansNeo',
 );
 const system10 = TextStyle(
+  fontWeight: FontWeight.w500,
   fontSize: 12,
   height: 18 / 12,
   fontFamily: 'SpoqaHanSansNeo',
@@ -62,6 +67,7 @@ const system11 = TextStyle(
   fontFamily: 'SpoqaHanSansNeo',
 );
 const system12 = TextStyle(
+  fontWeight: FontWeight.w500,
   fontSize: 10,
   height: 14 / 10,
   fontFamily: 'SpoqaHanSansNeo',
