@@ -1,5 +1,4 @@
 import 'package:droni/features/customer_home/view/widgets/drone_content.dart';
-import 'package:droni/features/customer_home/view/widgets/home_app_bar.dart';
 import 'package:droni/features/customer_home/view/widgets/popular_pilots.dart';
 import 'package:droni/features/customer_home/view/widgets/use_case_guide.dart';
 import 'package:flutter/material.dart';
@@ -18,34 +17,22 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
   Widget build(BuildContext context) {
     _size = MediaQuery.of(context).size;
 
-    return CustomScrollView(
-      slivers: [
-        const HomeAppBar(),
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            childCount: 1,
-            (context, index) => Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                banner(),
-                const PopularPilots(),
-                const UseCaseGuide(),
-                const DroneContent()
-              ],
-            ),
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            decoration: const BoxDecoration(color: Colors.grey),
+            height: _size.height * 0.17,
+            child: const Center(child: Text('Banner')),
           ),
-        ),
-      ],
-    );
-  }
-
-  Container banner() {
-    return Container(
-      decoration: const BoxDecoration(color: Colors.grey),
-      height: _size.height * 0.17,
-      child: const Center(child: Text('Banner')),
+          const PopularPilots(),
+          const UseCaseGuide(),
+          const DroneContent()
+        ],
+      ),
     );
   }
 }

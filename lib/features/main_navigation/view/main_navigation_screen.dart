@@ -1,3 +1,5 @@
+import 'package:droni/features/customer_home/view/widgets/home_app_bar.dart';
+import 'package:droni/features/customer_home/view/widgets/home_fab.dart';
 import 'package:droni/features/main_navigation/view/widgets/nav_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:droni/features/customer_home/view/home_screen.dart';
@@ -21,6 +23,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: _selectedIndex == 0 ? const HomeAppBar() : null,
       body: SafeArea(
         child: Stack(
           children: [
@@ -47,6 +50,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           ],
         ),
       ),
+      floatingActionButton: _selectedIndex == 0 ? const HomeFab() : null,
       bottomNavigationBar: BottomAppBar(
         height: 55,
         padding: EdgeInsets.zero,

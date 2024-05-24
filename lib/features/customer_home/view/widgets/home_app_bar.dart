@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:droni/shared/widgets/svg_icon.dart';
 
-class HomeAppBar extends StatelessWidget {
+class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SliverAppBar(
-      pinned: true,
-      toolbarHeight: 52,
-      collapsedHeight: 52,
+    return AppBar(
       leadingWidth: 123,
-      leading: Padding(
-        padding: const EdgeInsets.only(left: 20, top: 13, bottom: 13),
-        child: SvgPicture.asset(
-          'assets/image/logo_with_text.svg',
+      leading: const Padding(
+        padding: EdgeInsets.only(left: 20, top: 13, bottom: 13),
+        child: SvgIcon(
+          icon: 'assets/image/logo_with_text.svg',
           width: 103,
           height: 24,
         ),
       ),
-      actions: [
+      actions: const [
         Padding(
-          padding: const EdgeInsets.only(right: 20, top: 13, bottom: 13),
-          child: SvgPicture.asset(
-            'assets/image/icon/notification_unread_true.svg',
+          padding: EdgeInsets.only(right: 20, top: 13, bottom: 13),
+          child: SvgIcon(
+            icon: 'assets/image/icon/notification_unread_true.svg',
             height: 26,
           ),
         )
       ],
     );
   }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(52);
 }

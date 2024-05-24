@@ -1,5 +1,7 @@
+import 'package:droni/shared/constants/app_colors.dart';
+import 'package:droni/shared/constants/text_style.dart';
+import 'package:droni/shared/widgets/svg_icon.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 
 class UseCaseGuide extends StatelessWidget {
@@ -13,13 +15,7 @@ class UseCaseGuide extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            '드로니 활용백서',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-            ),
-          ),
+          const Text('드로니 활용백서', style: system03),
           const Gap(12),
           Row(
             children: [
@@ -38,19 +34,13 @@ class UseCaseGuide extends StatelessWidget {
                     const Gap(10),
                     Text(
                       '일반 사용자',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey[500],
-                      ),
+                      style: system10.copyWith(color: AppColors.droniGray500),
                     ),
                     const Gap(2),
                     Text(
                       '드론콘텐츠 제목은 2줄까지 노출합니다!',
                       overflow: TextOverflow.clip,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey[600],
-                      ),
+                      style: system08.copyWith(color: AppColors.droniGray600),
                     )
                   ],
                 ),
@@ -71,19 +61,13 @@ class UseCaseGuide extends StatelessWidget {
                     const Gap(10),
                     Text(
                       '일반 사용자',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey[500],
-                      ),
+                      style: system10.copyWith(color: AppColors.droniGray500),
                     ),
                     const Gap(2),
                     Text(
                       '드론콘텐츠 제목은 2줄까지 노출합니다!',
                       overflow: TextOverflow.clip,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey[600],
-                      ),
+                      style: system08.copyWith(color: AppColors.droniGray600),
                     )
                   ],
                 ),
@@ -102,15 +86,13 @@ class UseCaseGuide extends StatelessWidget {
               children: [
                 Text(
                   '더보러 가기',
-                  style: TextStyle(color: Colors.grey[900]),
+                  // style: TextStyle(color: Colors.grey[900]),
+                  style: system07.copyWith(color: AppColors.droniGray900),
                 ),
-                SvgPicture.asset(
-                  'assets/image/icon/chevron_right.svg',
+                const SvgIcon(
+                  icon: 'assets/image/icon/chevron_right.svg',
                   width: 20,
-                  colorFilter: ColorFilter.mode(
-                    Colors.grey[900]!,
-                    BlendMode.srcIn,
-                  ),
+                  color: AppColors.droniGray900,
                 )
               ],
             ),
