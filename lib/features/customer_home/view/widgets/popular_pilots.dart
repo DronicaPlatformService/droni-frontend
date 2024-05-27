@@ -9,10 +9,8 @@ class PopularPilots extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-
     return Container(
-      height: size.height * 0.2,
+      height: 174,
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Column(
         children: [
