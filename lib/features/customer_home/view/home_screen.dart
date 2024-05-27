@@ -1,7 +1,12 @@
+import 'dart:developer';
+
+import 'package:chopper/chopper.dart';
+import 'package:droni/api/generated/open_api.swagger.dart';
 import 'package:droni/features/customer_home/view/widgets/drone_content.dart';
 import 'package:droni/features/customer_home/view/widgets/popular_pilots.dart';
 import 'package:droni/features/customer_home/view/widgets/use_case_guide.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class CustomerHomeScreen extends StatefulWidget {
   const CustomerHomeScreen({super.key});
@@ -11,11 +16,9 @@ class CustomerHomeScreen extends StatefulWidget {
 }
 
 class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
-  late Size _size;
-
   @override
   Widget build(BuildContext context) {
-    _size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
 
     return SingleChildScrollView(
       child: Column(
@@ -25,7 +28,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
         children: [
           Container(
             decoration: const BoxDecoration(color: Colors.grey),
-            height: _size.height * 0.17,
+            height: size.height * 0.17,
             child: const Center(child: Text('Banner')),
           ),
           const PopularPilots(),
