@@ -1,4 +1,5 @@
 {
   "cmake.configureOnOpen": false,
-  "dart.flutterSdkPath": ".fvm/versions/3.19.4"
+  "dart.flutterSdkPath": ".fvm/versions/3.19.4",
+  "cSpell.words": ["Naver"]
 }

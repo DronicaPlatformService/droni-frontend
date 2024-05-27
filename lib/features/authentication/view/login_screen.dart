@@ -1,10 +1,22 @@
-import 'package:droni/shared/widgets/svg_icon.dart';
+import 'dart:developer';
+
+import 'package:droni/features/main_navigation/view/main_navigation_screen.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:gap/gap.dart';
 import 'package:flutter/material.dart';
+import 'package:droni/shared/widgets/svg_icon.dart';
 import 'package:droni/shared/constants/text_style.dart';
+import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  Future<void> _onNaverLoginTap() async {}
 
   @override
   Widget build(BuildContext context) {
@@ -58,22 +70,25 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                   const Gap(8),
-                  Container(
-                    width: double.infinity,
-                    height: 54,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey[300]!),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          '네이버로 시작하기',
-                          textAlign: TextAlign.center,
-                          style: system05,
-                        ),
-                      ],
+                  GestureDetector(
+                    onTap: () => _onNaverLoginTap(),
+                    child: Container(
+                      width: double.infinity,
+                      height: 54,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey[300]!),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '네이버로 시작하기',
+                            textAlign: TextAlign.center,
+                            style: system05,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
