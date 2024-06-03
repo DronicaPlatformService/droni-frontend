@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:droni/features/main_navigation/view/main_navigation_screen.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:gap/gap.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,36 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  Future<void> _onNaverLoginTap() async {}
+  Future<void> _onNaverLoginTap() async {
+    final baseUrl = dotenv.env['DRONI_BASE_URL'];
+    final url = Uri.http(
+      baseUrl ?? '',
+      '/oauth2/authorization/naver',
+      {'redirect_uri': 'droni://home'},
+    );
+    final result = await FlutterWebAuth2.authenticate(
+      url: url.toString(),
+      callbackUrlScheme: 'droni',
+    );
+    final params = result.split('?')[1].split('&').map((param) {
+      final [key, value] = param.split('=');
+      return {key: value};
+    }).toList();
+
+    const storage = FlutterSecureStorage();
+
+    storage.write(key: 'access_token', value: params[0]['access_token']!);
+    storage.write(key: 'refresh_token', value: params[1]['refresh_token']!);
+
+    if (context.mounted) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (_) => const MainNavigationScreen(),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
