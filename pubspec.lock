@@ -5,18 +5,18 @@ packages:
     dependency: transitive
     description:
       name: _fe_analyzer_shared
-      sha256: ae92f5d747aee634b87f89d9946000c2de774be1d6ac3e58268224348cd0101a
+      sha256: "0b2f2bd91ba804e53a61d757b986f89f1f9eaed5b11e4b2f5a2468d86d6c9fc7"
       url: "https://pub.dev"
     source: hosted
-    version: "61.0.0"
+    version: "67.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
-      sha256: ea3d8652bda62982addfd92fdc2d0214e5f82e43325104990d4f4c4a2a313562
+      sha256: "37577842a27e4338429a1cbc32679d508836510b056f1eedf0c8d20e39c1383d"
       url: "https://pub.dev"
     source: hosted
-    version: "5.13.0"
+    version: "6.4.1"
   ansicolor:
     dependency: transitive
     description:
@@ -141,18 +141,18 @@ packages:
     dependency: "direct main"
     description:
       name: chopper
-      sha256: "23aac2db54f6a7854ed8984fba4b33222e53123c71a0ccf01d2b1087a1b5aab7"
+      sha256: "779a7bc5c7af2e45bd35c49698f2b6fabc23ac053b622294369bbb079eeb8920"
       url: "https://pub.dev"
     source: hosted
-    version: "6.1.4"
+    version: "8.0.0"
   chopper_generator:
     dependency: "direct dev"
     description:
       name: chopper_generator
-      sha256: "09d512f1acb086cf4101bef02bdb23ee7a8eb55a9935f53af866736606c57523"
+      sha256: f7f4913d14bbec24b5cc3c5270f47a3a218bd1c764d7ed3eb0bf4574913208f3
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.3"
+    version: "8.0.0"
   clock:
     dependency: transitive
     description:
@@ -213,10 +213,10 @@ packages:
     dependency: transitive
     description:
       name: dart_style
-      sha256: "1efa911ca7086affd35f463ca2fc1799584fb6aa89883cf0af8e3664d6a02d55"
+      sha256: "99e066ce75c89d6b29903d788a7bb9369cf754f7b24bf70bf4b6d6d6b26853b9"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.2"
+    version: "2.3.6"
   equatable:
     dependency: "direct main"
     description:
@@ -696,6 +696,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.3"
+  qs_dart:
+    dependency: transitive
+    description:
+      name: qs_dart
+      sha256: "5f1827ccdfa061582c121e7a8fe4a83319fa455bcd1fd6e46ff5b17b57aed680"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.0"
   recase:
     dependency: transitive
     description:
@@ -704,6 +712,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.1.0"
+  recursive_regex:
+    dependency: transitive
+    description:
+      name: recursive_regex
+      sha256: f7252e3d3dfd1665e594d9fe035eca6bc54139b1f2fee38256fa427ea41adc60
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   riverpod:
     dependency: "direct main"
     description:
@@ -957,6 +973,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  weak_map:
+    dependency: transitive
+    description:
+      name: weak_map
+      sha256: "95ca338f0cdf5f0022cc283dfa4d97f6f6b03752f67eca85ebe6d7a679ffe3ed"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.1"
   web:
     dependency: transitive
     description:
