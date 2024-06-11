@@ -1,7 +1,7 @@
+import 'package:droni/features/authentication/view/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:droni/shared/themes/app_theme.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'features/authentication/view/login_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:droni/features/main_navigation/view/main_navigation_screen.dart';
 
@@ -10,6 +10,11 @@ void main() async {
 
   await dotenv.load(fileName: '.env');
   runApp(const App());
+}
+
+class GlobalVariables {
+  static final GlobalKey<NavigatorState> navigationKey =
+      GlobalKey<NavigatorState>();
 }
 
 class App extends StatefulWidget {
@@ -45,11 +50,13 @@ class AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: GlobalVariables.navigationKey,
       title: 'Droni',
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
-      home: isLoggined ? const MainNavigationScreen() : const LoginScreen(),
+      // home: isLoggined ? const MainNavigationScreen() : const LoginScreen(),
       // home: const MainNavigationScreen(),
+      home: const MainNavigationScreen(),
     );
   }
 }
