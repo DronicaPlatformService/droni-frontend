@@ -1,12 +1,7 @@
-import 'dart:developer';
-
-import 'package:chopper/chopper.dart';
-import 'package:droni/api/generated/open_api.swagger.dart';
 import 'package:droni/features/customer_home/view/widgets/drone_content.dart';
 import 'package:droni/features/customer_home/view/widgets/popular_pilots.dart';
 import 'package:droni/features/customer_home/view/widgets/use_case_guide.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class CustomerHomeScreen extends StatefulWidget {
   const CustomerHomeScreen({super.key});

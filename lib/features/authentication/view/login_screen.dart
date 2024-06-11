@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:droni/features/main_navigation/view/main_navigation_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -18,9 +16,10 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   Future<void> _onNaverLoginTap() async {
-    final baseUrl = dotenv.env['DRONI_BASE_URL'];
+    final baseUrl =
+        (dotenv.env['DRONI_BASE_URL'] ?? '').replaceFirst('http://', '');
     final url = Uri.http(
-      baseUrl ?? '',
+      baseUrl,
       '/oauth2/authorization/naver',
       {'redirect_uri': 'droni://home'},
     );

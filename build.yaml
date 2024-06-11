@@ -5,3 +5,5 @@ targets:
         options:
           input_folder: 'lib/api/swagger'
           output_folder: 'lib/api/generated'
+          separate_models: true
+          ignore_header: false
