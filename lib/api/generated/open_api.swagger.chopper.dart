@@ -6,15 +6,16 @@ part of 'open_api.swagger.dart';
 // ChopperGenerator
 // **************************************************************************
 
-// ignore_for_file: always_put_control_body_on_new_line, always_specify_types, prefer_const_declarations, unnecessary_brace_in_string_interps
-class _$OpenApi extends OpenApi {
+// coverage:ignore-file
+// ignore_for_file: type=lint
+final class _$OpenApi extends OpenApi {
   _$OpenApi([ChopperClient? client]) {
     if (client == null) return;
     this.client = client;
   }
 
   @override
-  final definitionType = OpenApi;
+  final Type definitionType = OpenApi;
 
   @override
   Future<Response<List<DroniFile>>> _homeBannerGet() {
@@ -39,8 +40,8 @@ class _$OpenApi extends OpenApi {
   }
 
   @override
-  Future<Response<String>> _testGet() {
-    final Uri $url = Uri.parse('/test');
+  Future<Response<String>> _sucessTestGet() {
+    final Uri $url = Uri.parse('/sucess-test');
     final Request $request = Request(
       'GET',
       $url,
@@ -50,8 +51,8 @@ class _$OpenApi extends OpenApi {
   }
 
   @override
-  Future<Response<String>> _test2Get() {
-    final Uri $url = Uri.parse('/test2');
+  Future<Response<String>> _expireTestGet() {
+    final Uri $url = Uri.parse('/expire-test');
     final Request $request = Request(
       'GET',
       $url,
