@@ -5,6 +5,11 @@ final defaultTheme = ThemeData(
   splashColor: Colors.transparent,
   splashFactory: NoSplash.splashFactory,
   highlightColor: Colors.transparent,
+  appBarTheme: const AppBarTheme(
+    backgroundColor: Colors.white,
+    elevation: 0,
+  ),
+  useMaterial3: false,
 );
 
 final lightTheme = defaultTheme.copyWith();
