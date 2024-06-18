@@ -1,16 +1,16 @@
-import 'package:droni/features/customer_home/view/widgets/drone_content.dart';
-import 'package:droni/features/customer_home/view/widgets/popular_pilots.dart';
-import 'package:droni/features/customer_home/view/widgets/use_case_guide.dart';
+import 'package:droni/features/user_home/view/widgets/drone_content.dart';
+import 'package:droni/features/user_home/view/widgets/popular_pilots.dart';
+import 'package:droni/features/user_home/view/widgets/use_case_guide.dart';
 import 'package:flutter/material.dart';
 
-class CustomerHomeScreen extends StatefulWidget {
-  const CustomerHomeScreen({super.key});
+class UserHomeScreen extends StatefulWidget {
+  const UserHomeScreen({super.key});
 
   @override
-  State<CustomerHomeScreen> createState() => _CustomerHomeScreenState();
+  State<UserHomeScreen> createState() => _UserHomeScreenState();
 }
 
-class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
+class _UserHomeScreenState extends State<UserHomeScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
