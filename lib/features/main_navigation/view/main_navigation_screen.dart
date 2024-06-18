@@ -1,8 +1,8 @@
-import 'package:droni/features/customer_home/view/widgets/home_app_bar.dart';
-import 'package:droni/features/customer_home/view/widgets/home_fab.dart';
+import 'package:droni/features/user_home/view/widgets/home_app_bar.dart';
+import 'package:droni/features/user_home/view/widgets/home_fab.dart';
 import 'package:droni/features/main_navigation/view/widgets/nav_tab.dart';
 import 'package:flutter/material.dart';
-import 'package:droni/features/customer_home/view/home_screen.dart';
+import 'package:droni/features/user_home/view/home_screen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   const MainNavigationScreen({super.key});
@@ -29,7 +29,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           children: [
             Offstage(
               offstage: _selectedIndex != 0,
-              child: const CustomerHomeScreen(),
+              child: const UserHomeScreen(),
             ),
             Offstage(
               offstage: _selectedIndex != 1,
