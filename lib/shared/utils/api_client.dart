@@ -46,7 +46,8 @@ class CustomInterceptor implements Interceptor {
 
   @override
   FutureOr<Response<BodyType>> intercept<BodyType>(
-      Chain<BodyType> chain) async {
+    Chain<BodyType> chain,
+  ) async {
     if (chain.request.uri.path.contains('reissue')) {
       return await chain.proceed(chain.request);
     }
@@ -56,6 +57,16 @@ class CustomInterceptor implements Interceptor {
     final response = await chain.proceed(request);
 
     if (response.statusCode == 401 || response.statusCode == 403) {
+      GlobalVariables.navigationKey.currentState?.pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const LoginScreen(),
+        ),
+      );
+
+      return response;
+    }
+
+    if (response.statusCode == 406) {
       final isReissued = await _reissueToken();
 
       if (!isReissued) {
