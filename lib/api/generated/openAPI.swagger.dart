@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:collection/collection.dart';
 import 'dart:convert';
 
-import 'open_api.models.swagger.dart';
+import 'openAPI.models.swagger.dart';
 import 'package:chopper/chopper.dart';
 
 import 'client_mapping.dart';
@@ -12,17 +12,19 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart' show MultipartFile;
 import 'package:chopper/chopper.dart' as chopper;
-export 'open_api.models.swagger.dart';
+import 'openAPI.enums.swagger.dart' as enums;
+export 'openAPI.enums.swagger.dart';
+export 'openAPI.models.swagger.dart';
 
-part 'open_api.swagger.chopper.dart';
+part 'openAPI.swagger.chopper.dart';
 
 // **************************************************************************
 // SwaggerChopperGenerator
 // **************************************************************************
 
 @ChopperApi()
-abstract class OpenApi extends ChopperService {
-  static OpenApi create({
+abstract class OpenAPI extends ChopperService {
+  static OpenAPI create({
     ChopperClient? client,
     http.Client? httpClient,
     Authenticator? authenticator,
@@ -32,18 +34,18 @@ abstract class OpenApi extends ChopperService {
     List<Interceptor>? interceptors,
   }) {
     if (client != null) {
-      return _$OpenApi(client);
+      return _$OpenAPI(client);
     }
 
     final newClient = ChopperClient(
-        services: [_$OpenApi()],
+        services: [_$OpenAPI()],
         converter: converter ?? $JsonSerializableConverter(),
         interceptors: interceptors ?? [],
         client: httpClient,
         authenticator: authenticator,
         errorConverter: errorConverter,
         baseUrl: baseUrl ?? Uri.parse('http://'));
-    return _$OpenApi(newClient);
+    return _$OpenAPI(newClient);
   }
 
   ///get banner api
@@ -68,6 +70,51 @@ abstract class OpenApi extends ChopperService {
   ///get popular pilot api
   @Get(path: '/home/popular-pilot')
   Future<chopper.Response<List<PilotProfile>>> _homePopularPilotGet();
+
+  ///메인화면에서 보여지는 활용백서 5개 반환 api
+  ///@param articleTarget
+  Future<chopper.Response<List<ArticleSummaryResponse>>>
+      articleHowToUseSummaryGet(
+          {enums.ArticleHowToUseSummaryGetArticleTarget? articleTarget}) {
+    generatedMapping.putIfAbsent(
+        ArticleSummaryResponse, () => ArticleSummaryResponse.fromJsonFactory);
+
+    return _articleHowToUseSummaryGet(
+        articleTarget: articleTarget?.value?.toString());
+  }
+
+  ///메인화면에서 보여지는 활용백서 5개 반환 api
+  ///@param articleTarget
+  @Get(path: '/article/how-to-use/summary')
+  Future<chopper.Response<List<ArticleSummaryResponse>>>
+      _articleHowToUseSummaryGet(
+          {@Query('articleTarget') String? articleTarget});
+
+  ///메인화면 드론 콘텐츠 5개 반환 api
+  Future<chopper.Response<List<ArticleSummaryResponse>>>
+      articleDroneContentSummaryGet() {
+    generatedMapping.putIfAbsent(
+        ArticleSummaryResponse, () => ArticleSummaryResponse.fromJsonFactory);
+
+    return _articleDroneContentSummaryGet();
+  }
+
+  ///메인화면 드론 콘텐츠 5개 반환 api
+  @Get(path: '/article/drone-content/summary')
+  Future<chopper.Response<List<ArticleSummaryResponse>>>
+      _articleDroneContentSummaryGet();
+
+  ///메인화면 인기 조종사 api
+  Future<chopper.Response<List<PopularExpert>>> expertPopularGet() {
+    generatedMapping.putIfAbsent(
+        PopularExpert, () => PopularExpert.fromJsonFactory);
+
+    return _expertPopularGet();
+  }
+
+  ///메인화면 인기 조종사 api
+  @Get(path: '/expert/popular')
+  Future<chopper.Response<List<PopularExpert>>> _expertPopularGet();
 
   ///
   Future<chopper.Response<String>> sucessTestGet() {

@@ -1,1 +1,1 @@
-export 'open_api.swagger.dart' show OpenApi;
+export 'openAPI.swagger.dart' show OpenAPI;
