@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:chopper/chopper.dart';
-import 'package:droni/api/generated/open_api.swagger.dart';
+import 'package:droni/api/generated/client_index.dart';
+import 'package:droni/api/generated/openAPI.models.swagger.dart';
 import 'package:droni/features/authentication/view/login_screen.dart';
 import 'package:droni/main.dart';
 import 'package:flutter/material.dart';
@@ -56,7 +57,7 @@ class CustomInterceptor implements Interceptor {
 
     final response = await chain.proceed(request);
 
-    if (response.statusCode == 401 || response.statusCode == 403) {
+    if (response.statusCode == 401) {
       GlobalVariables.navigationKey.currentState?.pushReplacement(
         MaterialPageRoute(
           builder: (context) => const LoginScreen(),
@@ -81,7 +82,7 @@ class CustomInterceptor implements Interceptor {
   }
 }
 
-final client = OpenApi.create(
+final client = OpenAPI.create(
   baseUrl: Uri.parse(dotenv.env['DRONI_BASE_URL'] ?? ''),
   interceptors: [
     HttpLoggingInterceptor(),

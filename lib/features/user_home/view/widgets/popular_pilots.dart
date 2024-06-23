@@ -1,4 +1,8 @@
+import 'dart:developer';
+
+import 'package:droni/api/generated/openAPI.swagger.dart';
 import 'package:droni/shared/constants/app_colors.dart';
+import 'package:droni/shared/utils/api_client.dart';
 import 'package:droni/shared/widgets/svg_icon.dart';
 import 'package:droni/shared/constants/text_style.dart';
 import 'package:flutter/material.dart';
@@ -36,29 +40,39 @@ class PopularPilots extends StatelessWidget {
           const Gap(12),
           SizedBox(
             height: 88,
-            child: ListView.separated(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              itemCount: 8,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => Column(
-                children: [
-                  const SizedBox(
-                    width: 64,
-                    height: 64,
-                    child: CircleAvatar(
-                      backgroundImage: NetworkImage(
-                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDy9bXUES6Lh_0aZMVd1HgHfv8OKhh4WaAdby5wFHxDQ&s',
+            child: FutureBuilder(
+              // future: client.articleHowToUseSummaryGet(
+              //   articleTarget: ArticleHowToUseSummaryGetArticleTarget.all,
+              // ),
+              future: client.homeBannerGet(),
+              builder: (context, snapshot) {
+                log(snapshot.data.toString());
+
+                return ListView.separated(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  itemCount: 8,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) => Column(
+                    children: [
+                      const SizedBox(
+                        width: 64,
+                        height: 64,
+                        child: CircleAvatar(
+                          backgroundImage: NetworkImage(
+                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDy9bXUES6Lh_0aZMVd1HgHfv8OKhh4WaAdby5wFHxDQ&s',
+                          ),
+                        ),
                       ),
-                    ),
+                      const Gap(6),
+                      Text(
+                        '조종사1',
+                        style: system11.copyWith(color: AppColors.droniGray600),
+                      ),
+                    ],
                   ),
-                  const Gap(6),
-                  Text(
-                    '조종사1',
-                    style: system11.copyWith(color: AppColors.droniGray600),
-                  ),
-                ],
-              ),
-              separatorBuilder: (context, index) => const Gap(12),
+                  separatorBuilder: (context, index) => const Gap(12),
+                );
+              },
             ),
           ),
         ],
