@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:droni/features/main_navigation/view/main_navigation_screen.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:gap/gap.dart';
@@ -23,27 +26,34 @@ class _LoginScreenState extends State<LoginScreen> {
       '/oauth2/authorization/naver',
       {'redirect_uri': 'droni://home'},
     );
-    final result = await FlutterWebAuth2.authenticate(
-      url: url.toString(),
-      callbackUrlScheme: 'droni',
-    );
-    final params = result.split('?')[1].split('&').map((param) {
-      final [key, value] = param.split('=');
-      return {key: value};
-    }).toList();
 
-    const storage = FlutterSecureStorage();
-
-    storage.write(key: 'access_token', value: params[0]['access_token']!);
-    storage.write(key: 'refresh_token', value: params[1]['refresh_token']!);
-
-    if (context.mounted) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (_) => const MainNavigationScreen(),
-        ),
+    try {
+      final result = await FlutterWebAuth2.authenticate(
+        url: url.toString(),
+        callbackUrlScheme: 'droni',
       );
+      final params = result.split('?')[1].split('&').map((param) {
+        final [key, value] = param.split('=');
+        return {key: value};
+      }).toList();
+
+      const storage = FlutterSecureStorage();
+
+      storage.write(key: 'access_token', value: params[0]['access_token']!);
+      storage.write(key: 'refresh_token', value: params[1]['refresh_token']!);
+
+      if (context.mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (_) => const MainNavigationScreen(),
+          ),
+        );
+      }
+    } on PlatformException catch (error) {
+      if (error.code == 'CANCELED') {
+        // User가 직접 로그인창을 닫았을때 발생하는 에러
+      }
     }
   }
 

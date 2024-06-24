@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'open_api.models.swagger.dart';
+part of 'openAPI.models.swagger.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -41,4 +41,32 @@ Map<String, dynamic> _$TokenRefreshDtoToJson(TokenRefreshDto instance) =>
     <String, dynamic>{
       'accessToken': instance.accessToken,
       'refreshToken': instance.refreshToken,
+    };
+
+ArticleSummaryResponse _$ArticleSummaryResponseFromJson(
+        Map<String, dynamic> json) =>
+    ArticleSummaryResponse(
+      articleImageUri: json['articleImageUri'] as String?,
+      articleSubject: json['articleSubject'] as String?,
+    );
+
+Map<String, dynamic> _$ArticleSummaryResponseToJson(
+        ArticleSummaryResponse instance) =>
+    <String, dynamic>{
+      'articleImageUri': instance.articleImageUri,
+      'articleSubject': instance.articleSubject,
+    };
+
+PopularExpert _$PopularExpertFromJson(Map<String, dynamic> json) =>
+    PopularExpert(
+      expertId: json['expertId'] as int?,
+      score: (json['score'] as num?)?.toDouble(),
+      profileImage: json['profileImage'] as String?,
+    );
+
+Map<String, dynamic> _$PopularExpertToJson(PopularExpert instance) =>
+    <String, dynamic>{
+      'expertId': instance.expertId,
+      'score': instance.score,
+      'profileImage': instance.profileImage,
     };
