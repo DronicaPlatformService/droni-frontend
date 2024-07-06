@@ -1,7 +1,6 @@
-import 'dart:developer';
-
 import 'package:droni/features/main_navigation/view/main_navigation_screen.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:gap/gap.dart';
@@ -90,22 +89,30 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               Column(
                 children: [
-                  Container(
-                    width: double.infinity,
-                    height: 54,
-                    decoration: BoxDecoration(
-                      color: const Color(0xffF9e007),
-                      borderRadius: BorderRadius.circular(8),
+                  GestureDetector(
+                    onTap: () => Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const MainNavigationScreen(),
+                      ),
                     ),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          '카카오로 3초만에 시작하기',
-                          textAlign: TextAlign.center,
-                          style: system05,
-                        ),
-                      ],
+                    child: Container(
+                      width: double.infinity,
+                      height: 54,
+                      decoration: BoxDecoration(
+                        color: const Color(0xffF9e007),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '카카오로 3초만에 시작하기',
+                            textAlign: TextAlign.center,
+                            style: system05,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   const Gap(8),
