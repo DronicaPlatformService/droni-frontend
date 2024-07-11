@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:droni/api/generated/openAPI.swagger.dart';
 import 'package:droni/shared/constants/app_colors.dart';
 import 'package:droni/shared/utils/api_client.dart';
 import 'package:droni/shared/widgets/svg_icon.dart';
@@ -38,38 +41,31 @@ class PopularPilots extends StatelessWidget {
           SizedBox(
             height: 88,
             child: FutureBuilder(
-              future: mockClient.homePopularPilotGet(),
-              // future: client.homePopularPilotGet(),
+              // future: client.articleHowToUseSummaryGet(
+              //   articleTarget: ArticleHowToUseSummaryGetArticleTarget.all,
+              // ),
+              future: client.homeBannerGet(),
               builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.none ||
-                    snapshot.connectionState == ConnectionState.active ||
-                    snapshot.connectionState == ConnectionState.none ||
-                    snapshot.data == null ||
-                    !snapshot.hasData) {
-                  return const CircularProgressIndicator();
-                }
-
-                final pilots = snapshot.data!.body!;
+                log(snapshot.data.toString());
 
                 return ListView.separated(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
-                  itemCount: pilots.length,
+                  itemCount: 8,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) => Column(
                     children: [
-                      if (pilots[index].imageUrl != null)
-                        SizedBox(
-                          width: 64,
-                          height: 64,
-                          child: CircleAvatar(
-                            backgroundImage: NetworkImage(
-                              pilots[index].imageUrl!,
-                            ),
+                      const SizedBox(
+                        width: 64,
+                        height: 64,
+                        child: CircleAvatar(
+                          backgroundImage: NetworkImage(
+                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDy9bXUES6Lh_0aZMVd1HgHfv8OKhh4WaAdby5wFHxDQ&s',
                           ),
                         ),
+                      ),
                       const Gap(6),
                       Text(
-                        pilots[index].nickName ?? '조종사 이름 없음',
+                        '조종사1',
                         style: system11.copyWith(color: AppColors.droniGray600),
                       ),
                     ],
