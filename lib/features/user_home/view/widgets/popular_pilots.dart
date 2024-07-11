@@ -49,7 +49,7 @@ class PopularPilots extends StatelessWidget {
                   return const CircularProgressIndicator();
                 }
 
-                final pilots = snapshot.data!.body!;
+                final pilots = snapshot.data!.body ?? [];
 
                 return ListView.separated(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
