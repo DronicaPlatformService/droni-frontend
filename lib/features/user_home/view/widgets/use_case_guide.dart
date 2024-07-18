@@ -1,7 +1,11 @@
+import 'package:droni/api/generated/openAPI.enums.swagger.dart';
+import 'package:droni/features/user_home/view/widgets/use_case_guide_item.dart';
 import 'package:droni/shared/constants/app_colors.dart';
 import 'package:droni/shared/constants/text_style.dart';
+import 'package:droni/shared/utils/api_client.dart';
 import 'package:droni/shared/widgets/svg_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 
 class UseCaseGuide extends StatelessWidget {
@@ -17,62 +21,33 @@ class UseCaseGuide extends StatelessWidget {
         children: [
           const Text('드로니 활용백서', style: system03),
           const Gap(12),
-          Row(
-            children: [
-              Flexible(
-                flex: 1,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: 120,
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    const Gap(10),
-                    Text(
-                      '일반 사용자',
-                      style: system10.copyWith(color: AppColors.droniGray500),
-                    ),
-                    const Gap(2),
-                    Text(
-                      '드론콘텐츠 제목은 2줄까지 노출합니다!',
-                      overflow: TextOverflow.clip,
-                      style: system08.copyWith(color: AppColors.droniGray600),
-                    )
-                  ],
-                ),
-              ),
-              const Gap(12),
-              Flexible(
-                flex: 1,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: 120,
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    const Gap(10),
-                    Text(
-                      '일반 사용자',
-                      style: system10.copyWith(color: AppColors.droniGray500),
-                    ),
-                    const Gap(2),
-                    Text(
-                      '드론콘텐츠 제목은 2줄까지 노출합니다!',
-                      overflow: TextOverflow.clip,
-                      style: system08.copyWith(color: AppColors.droniGray600),
-                    )
-                  ],
-                ),
-              ),
-            ],
+          FutureBuilder(
+            future: mockClient.articleHowToUseSummaryGet(
+              articleTarget: ArticleHowToUseSummaryGetArticleTarget.all,
+            ),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.none ||
+                  snapshot.connectionState == ConnectionState.active ||
+                  snapshot.connectionState == ConnectionState.none ||
+                  snapshot.data == null ||
+                  !snapshot.hasData) {
+                return const CircularProgressIndicator();
+              }
+
+              final data = snapshot.data!.body ?? [];
+
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  UseCaseGuideItem(
+                    article: data[0],
+                  ),
+                  UseCaseGuideItem(
+                    article: data[1],
+                  ),
+                ],
+              );
+            },
           ),
           const Gap(20),
           Container(
@@ -86,7 +61,6 @@ class UseCaseGuide extends StatelessWidget {
               children: [
                 Text(
                   '더보러 가기',
-                  // style: TextStyle(color: Colors.grey[900]),
                   style: system07.copyWith(color: AppColors.droniGray900),
                 ),
                 const SvgIcon(
