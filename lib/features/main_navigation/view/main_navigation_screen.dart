@@ -1,8 +1,11 @@
-import 'package:droni/features/user_home/view/widgets/home_app_bar.dart';
-import 'package:droni/features/user_home/view/widgets/home_fab.dart';
-import 'package:droni/features/main_navigation/view/widgets/nav_tab.dart';
 import 'package:flutter/material.dart';
+
+import 'package:droni/features/chat/view/chat_list_screen.dart';
 import 'package:droni/features/user_home/view/home_screen.dart';
+import 'package:droni/features/user_home/view/widgets/home_fab.dart';
+import 'package:droni/features/user_home/view/widgets/home_app_bar.dart';
+
+import '../view/widgets/nav_tab.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   const MainNavigationScreen({super.key});
@@ -41,7 +44,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
             ),
             Offstage(
               offstage: _selectedIndex != 3,
-              child: const Text('채팅'),
+              child: const ChatListScreen(),
             ),
             Offstage(
               offstage: _selectedIndex != 4,
