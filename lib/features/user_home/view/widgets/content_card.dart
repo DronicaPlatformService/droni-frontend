@@ -1,8 +1,10 @@
-import 'package:droni/api/generated/openAPI.swagger.dart';
+import 'package:flutter/material.dart';
+
+import 'package:gap/gap.dart';
+
 import 'package:droni/shared/constants/app_colors.dart';
 import 'package:droni/shared/constants/text_style.dart';
-import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
+import 'package:droni/api/generated/openAPI.swagger.dart';
 
 class ContentCard extends StatelessWidget {
   const ContentCard({
