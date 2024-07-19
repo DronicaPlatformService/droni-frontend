@@ -1,15 +1,27 @@
-import 'package:droni/api/generated/openAPI.enums.swagger.dart';
-import 'package:droni/features/user_home/view/widgets/use_case_guide_item.dart';
-import 'package:droni/shared/constants/app_colors.dart';
-import 'package:droni/shared/constants/text_style.dart';
+import 'package:droni/features/user_home/view/detail_screen.dart';
+import 'package:flutter/material.dart';
+
+import 'package:gap/gap.dart';
+
 import 'package:droni/shared/utils/api_client.dart';
 import 'package:droni/shared/widgets/svg_icon.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:gap/gap.dart';
+import 'package:droni/shared/constants/app_colors.dart';
+import 'package:droni/shared/constants/text_style.dart';
+
+import 'package:droni/api/generated/openAPI.enums.swagger.dart';
+
+import '../widgets/use_case_guide_item.dart';
 
 class UseCaseGuide extends StatelessWidget {
   const UseCaseGuide({super.key});
+
+  void _onUseCaseGuideTap(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const DetailScreen(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,14 +50,20 @@ class UseCaseGuide extends StatelessWidget {
 
               return Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  UseCaseGuideItem(
-                    article: data[0],
-                  ),
-                  UseCaseGuideItem(
-                    article: data[1],
-                  ),
-                ],
+                children: data
+                    .map(
+                      (d) => Flexible(
+                        flex: 1,
+                        child: GestureDetector(
+                          onTap: () => _onUseCaseGuideTap(context),
+                          child: UseCaseGuideItem(
+                            subTitle: '일반사용자',
+                            article: d,
+                          ),
+                        ),
+                      ),
+                    )
+                    .toList(),
               );
             },
           ),
