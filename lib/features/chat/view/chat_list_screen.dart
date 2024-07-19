@@ -20,6 +20,7 @@ class ChatListScreen extends StatelessWidget {
         headerSliverBuilder: (context, innerBoxIsScrolled) {
           return [
             SliverAppBar(
+              pinned: true,
               titleSpacing: 13,
               title: Text(
                 '채팅',
