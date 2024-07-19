@@ -11,7 +11,7 @@ import 'package:droni/shared/constants/text_style.dart';
 
 import 'package:droni/api/generated/openAPI.enums.swagger.dart';
 
-import '../widgets/use_case_guide_item.dart';
+import 'content_card.dart';
 
 class UseCaseGuide extends StatelessWidget {
   const UseCaseGuide({super.key});
@@ -57,7 +57,7 @@ class UseCaseGuide extends StatelessWidget {
                         flex: 1,
                         child: GestureDetector(
                           onTap: () => _onUseCaseGuideTap(context),
-                          child: UseCaseGuideItem(
+                          child: ContentCard(
                             subTitle: '일반사용자',
                             article: d,
                           ),
