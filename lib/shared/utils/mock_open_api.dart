@@ -63,16 +63,52 @@ class MockOpenAPI implements OpenAPI {
 
   @override
   Future<Response<List<ArticleSummaryResponse>>>
-      articleDroneContentSummaryGet() {
-    // TODO: implement articleDroneContentSummaryGet
-    throw UnimplementedError();
+      articleDroneContentSummaryGet() async {
+    await Future.delayed(delay);
+
+    final List<ArticleSummaryResponse> list = [];
+
+    for (var i = 0; i < 5; i++) {
+      list.add(
+        ArticleSummaryResponse(
+          articleImageUri:
+              'https://picsum.photos/id/${Random().nextInt(20)}/160/132',
+          articleSubject: 'test',
+        ),
+      );
+    }
+
+    final response = Response(
+      MockResponse(),
+      list,
+    );
+
+    return Future.value(response);
   }
 
   @override
   Future<Response<List<ArticleSummaryResponse>>> articleHowToUseSummaryGet(
-      {ArticleHowToUseSummaryGetArticleTarget? articleTarget}) {
-    // TODO: implement articleHowToUseSummaryGet
-    throw UnimplementedError();
+      {ArticleHowToUseSummaryGetArticleTarget? articleTarget}) async {
+    await Future.delayed(delay);
+
+    final List<ArticleSummaryResponse> list = [];
+
+    for (var i = 0; i < 5; i++) {
+      list.add(
+        ArticleSummaryResponse(
+          articleImageUri:
+              'https://picsum.photos/id/${Random().nextInt(20)}/160/120',
+          articleSubject: 'test',
+        ),
+      );
+    }
+
+    final response = Response(
+      MockResponse(),
+      list,
+    );
+
+    return Future.value(response);
   }
 
   @override

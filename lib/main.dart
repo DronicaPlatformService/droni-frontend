@@ -55,8 +55,8 @@ class AppState extends State<App> {
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       // home: isLoggined ? const MainNavigationScreen() : const LoginScreen(),
-      // home: const LoginScreen(),
-      home: const MainNavigationScreen(),
+      home: const LoginScreen(),
+      // home: const MainNavigationScreen(),
     );
   }
 }
