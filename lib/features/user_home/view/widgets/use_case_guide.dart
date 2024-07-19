@@ -1,5 +1,6 @@
 import 'package:droni/features/user_home/view/detail_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:gap/gap.dart';
 
@@ -68,25 +69,28 @@ class UseCaseGuide extends StatelessWidget {
             },
           ),
           const Gap(20),
-          Container(
-            height: 44,
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey[300]!),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  '더보러 가기',
-                  style: system07.copyWith(color: AppColors.droniGray900),
-                ),
-                const SvgIcon(
-                  icon: 'assets/image/icon/chevron_right.svg',
-                  width: 20,
-                  color: AppColors.droniGray900,
-                )
-              ],
+          GestureDetector(
+            onTap: () => _onUseCaseGuideTap(context),
+            child: Container(
+              height: 44,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey[300]!),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '더보러 가기',
+                    style: system07.copyWith(color: AppColors.droniGray900),
+                  ),
+                  const SvgIcon(
+                    icon: 'assets/image/icon/chevron_right.svg',
+                    width: 20,
+                    color: AppColors.droniGray900,
+                  )
+                ],
+              ),
             ),
           )
         ],
