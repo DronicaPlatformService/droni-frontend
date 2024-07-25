@@ -93,7 +93,7 @@ class MockOpenAPI implements OpenAPI {
 
     final List<ArticleSummaryResponse> list = [];
 
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 2; i++) {
       list.add(
         ArticleSummaryResponse(
           articleImageUri:

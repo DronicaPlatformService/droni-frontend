@@ -1,7 +1,10 @@
-import 'package:droni/features/user_home/view/widgets/drone_content.dart';
-import 'package:droni/features/user_home/view/widgets/popular_pilots.dart';
-import 'package:droni/features/user_home/view/widgets/use_case_guide.dart';
 import 'package:flutter/material.dart';
+
+import 'package:gap/gap.dart';
+
+import './widgets/drone_content.dart';
+import './widgets/popular_pilots.dart';
+import './widgets/use_case_guide.dart';
 
 class UserHomeScreen extends StatefulWidget {
   const UserHomeScreen({super.key});
@@ -28,7 +31,8 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
           ),
           const PopularPilots(),
           const UseCaseGuide(),
-          const DroneContent()
+          const DroneContent(),
+          const Gap(20),
         ],
       ),
     );

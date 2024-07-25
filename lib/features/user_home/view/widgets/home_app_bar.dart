@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:droni/shared/widgets/svg_icon.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {

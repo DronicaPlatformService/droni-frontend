@@ -1,9 +1,11 @@
-import 'package:droni/shared/constants/app_colors.dart';
+import 'package:flutter/material.dart';
+
+import 'package:gap/gap.dart';
+
 import 'package:droni/shared/utils/api_client.dart';
 import 'package:droni/shared/widgets/svg_icon.dart';
+import 'package:droni/shared/constants/app_colors.dart';
 import 'package:droni/shared/constants/text_style.dart';
-import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 
 class PopularPilots extends StatelessWidget {
   const PopularPilots({super.key});

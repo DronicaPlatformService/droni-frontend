@@ -1,5 +1,6 @@
-import 'package:droni/shared/widgets/svg_icon.dart';
 import 'package:flutter/material.dart';
+
+import 'package:droni/shared/widgets/svg_icon.dart';
 
 class HomeFab extends StatelessWidget {
   const HomeFab({super.key});

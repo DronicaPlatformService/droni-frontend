@@ -7,6 +7,7 @@ final defaultTheme = ThemeData(
   highlightColor: Colors.transparent,
   appBarTheme: const AppBarTheme(
     backgroundColor: Colors.white,
+    foregroundColor: Colors.black,
     elevation: 0,
   ),
   useMaterial3: false,

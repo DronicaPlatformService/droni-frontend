@@ -20,6 +20,7 @@ class ChatListScreen extends StatelessWidget {
         headerSliverBuilder: (context, innerBoxIsScrolled) {
           return [
             SliverAppBar(
+              pinned: true,
               titleSpacing: 13,
               title: Text(
                 '채팅',
@@ -69,31 +70,6 @@ class ChatListScreen extends StatelessWidget {
           ],
         ),
       ),
-      // child: Column(
-      //   children: [
-      //     Padding(
-      //       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
-      //       child: Row(
-      //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //         children: [
-      //           Text(
-      //             '채팅',
-      //             style: system03.copyWith(
-      //               color: AppColors.droniGray800,
-      //             ),
-      //           ),
-      //         ],
-      //       ),
-      //     ),
-      //     const Gap(11),
-      //     SingleChildScrollView(
-      //       child: SizedBox(
-      //         width: MediaQuery.of(context).size.width,
-      //         height: MediaQuery.of(context).size.height,
-      //         child: const       //       ),
-      //     )
-      //   ],
-      // ),
     );
   }
 }
