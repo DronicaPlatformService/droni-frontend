@@ -35,7 +35,10 @@ class UseCaseGuide extends StatelessWidget {
           const Text('드로니 활용백서', style: system03),
           const Gap(12),
           FutureBuilder(
-            future: mockClient.articleHowToUseSummaryGet(
+            // future: mockClient.articleHowToUseSummaryGet(
+            //   articleTarget: ArticleHowToUseSummaryGetArticleTarget.all,
+            // ),
+            future: client.articleHowToUseSummaryGet(
               articleTarget: ArticleHowToUseSummaryGetArticleTarget.all,
             ),
             builder: (context, snapshot) {
