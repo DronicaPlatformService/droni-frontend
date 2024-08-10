@@ -48,34 +48,123 @@ abstract class OpenAPI extends ChopperService {
     return _$OpenAPI(newClient);
   }
 
-  ///get banner api
-  Future<chopper.Response<List<DroniFile>>> homeBannerGet() {
-    generatedMapping.putIfAbsent(DroniFile, () => DroniFile.fromJsonFactory);
+  ///기존 토근이 만료되었을 때 다시 발생해주는 API
+  Future<chopper.Response<TokenRefreshDto>> reissuePost(
+      {required TokenRefreshDto? body}) {
+    generatedMapping.putIfAbsent(
+        TokenRefreshDto, () => TokenRefreshDto.fromJsonFactory);
+
+    return _reissuePost(body: body);
+  }
+
+  ///기존 토근이 만료되었을 때 다시 발생해주는 API
+  @Post(
+    path: '/reissue',
+    optionalBody: true,
+  )
+  Future<chopper.Response<TokenRefreshDto>> _reissuePost(
+      {@Body() required TokenRefreshDto? body});
+
+  ///채탱방을 생성하는 api
+  ///@param createChatRequest
+  Future<chopper.Response<int>> chatPost(
+      {required CreateChatRequest? createChatRequest}) {
+    generatedMapping.putIfAbsent(
+        CreateChatRequest, () => CreateChatRequest.fromJsonFactory);
+
+    return _chatPost(createChatRequest: createChatRequest);
+  }
+
+  ///채탱방을 생성하는 api
+  ///@param createChatRequest
+  @Post(
+    path: '/chat',
+    optionalBody: true,
+  )
+  Future<chopper.Response<int>> _chatPost(
+      {@Query('createChatRequest')
+      required CreateChatRequest? createChatRequest});
+
+  ///
+  Future<chopper.Response<String>> successTestGet() {
+    return _successTestGet();
+  }
+
+  ///
+  @Get(path: '/success-test')
+  Future<chopper.Response<String>> _successTestGet();
+
+  ///
+  Future<chopper.Response<List<DroniFileResponse>>> homeBannerGet() {
+    generatedMapping.putIfAbsent(
+        DroniFileResponse, () => DroniFileResponse.fromJsonFactory);
 
     return _homeBannerGet();
   }
 
-  ///get banner api
+  ///
   @Get(path: '/home/banner')
-  Future<chopper.Response<List<DroniFile>>> _homeBannerGet();
+  Future<chopper.Response<List<DroniFileResponse>>> _homeBannerGet();
 
-  ///get popular pilot api
-  Future<chopper.Response<List<PilotProfile>>> homePopularPilotGet() {
+  ///
+  Future<chopper.Response<String>> expireTestGet() {
+    return _expireTestGet();
+  }
+
+  ///
+  @Get(path: '/expire-test')
+  Future<chopper.Response<String>> _expireTestGet();
+
+  ///홈 화면 인기 조종사 api
+  Future<chopper.Response<List<PilotProfile>>> expertHomePopularExpertGet() {
     generatedMapping.putIfAbsent(
         PilotProfile, () => PilotProfile.fromJsonFactory);
 
-    return _homePopularPilotGet();
+    return _expertHomePopularExpertGet();
   }
 
-  ///get popular pilot api
-  @Get(path: '/home/popular-pilot')
-  Future<chopper.Response<List<PilotProfile>>> _homePopularPilotGet();
+  ///홈 화면 인기 조종사 api
+  @Get(path: '/expert/home/popular-expert')
+  Future<chopper.Response<List<PilotProfile>>> _expertHomePopularExpertGet();
+
+  ///이전 message 목록을 가져오는 api
+  ///@param chatroomId
+  Future<chopper.Response<List<ChatMessage>>> chatHistoryChatroomIdGet(
+      {required int? chatroomId}) {
+    generatedMapping.putIfAbsent(
+        ChatMessage, () => ChatMessage.fromJsonFactory);
+
+    return _chatHistoryChatroomIdGet(chatroomId: chatroomId);
+  }
+
+  ///이전 message 목록을 가져오는 api
+  ///@param chatroomId
+  @Get(path: '/chat/history/{chatroomId}')
+  Future<chopper.Response<List<ChatMessage>>> _chatHistoryChatroomIdGet(
+      {@Path('chatroomId') required int? chatroomId});
+
+  ///유저의 채팅방 목록을 가져오는 api
+  ///@param userId
+  Future<chopper.Response<List<UserChatroom>>> chatChatroomUserIdGet(
+      {required int? userId}) {
+    generatedMapping.putIfAbsent(
+        UserChatroom, () => UserChatroom.fromJsonFactory);
+
+    return _chatChatroomUserIdGet(userId: userId);
+  }
+
+  ///유저의 채팅방 목록을 가져오는 api
+  ///@param userId
+  @Get(path: '/chat/chatroom/{userId}')
+  Future<chopper.Response<List<UserChatroom>>> _chatChatroomUserIdGet(
+      {@Path('userId') required int? userId});
 
   ///메인화면에서 보여지는 활용백서 5개 반환 api
   ///@param articleTarget
   Future<chopper.Response<List<ArticleSummaryResponse>>>
       articleHowToUseSummaryGet(
-          {enums.ArticleHowToUseSummaryGetArticleTarget? articleTarget}) {
+          {required enums.ArticleHowToUseSummaryGetArticleTarget?
+              articleTarget}) {
     generatedMapping.putIfAbsent(
         ArticleSummaryResponse, () => ArticleSummaryResponse.fromJsonFactory);
 
@@ -88,7 +177,25 @@ abstract class OpenAPI extends ChopperService {
   @Get(path: '/article/how-to-use/summary')
   Future<chopper.Response<List<ArticleSummaryResponse>>>
       _articleHowToUseSummaryGet(
-          {@Query('articleTarget') String? articleTarget});
+          {@Query('articleTarget') required String? articleTarget});
+
+  ///드론백서 더보기 클릭시 반환 api
+  ///@param articleTarget
+  Future<chopper.Response<List<ArticleSummaryResponse>>> articleHowToUseListGet(
+      {required enums.ArticleHowToUseListGetArticleTarget? articleTarget}) {
+    generatedMapping.putIfAbsent(
+        ArticleSummaryResponse, () => ArticleSummaryResponse.fromJsonFactory);
+
+    return _articleHowToUseListGet(
+        articleTarget: articleTarget?.value?.toString());
+  }
+
+  ///드론백서 더보기 클릭시 반환 api
+  ///@param articleTarget
+  @Get(path: '/article/how-to-use/list')
+  Future<chopper.Response<List<ArticleSummaryResponse>>>
+      _articleHowToUseListGet(
+          {@Query('articleTarget') required String? articleTarget});
 
   ///메인화면 드론 콘텐츠 5개 반환 api
   Future<chopper.Response<List<ArticleSummaryResponse>>>
@@ -104,52 +211,19 @@ abstract class OpenAPI extends ChopperService {
   Future<chopper.Response<List<ArticleSummaryResponse>>>
       _articleDroneContentSummaryGet();
 
-  ///메인화면 인기 조종사 api
-  Future<chopper.Response<List<PopularExpert>>> expertPopularGet() {
+  ///메인화면 드론 콘텐츠 더보기 클릭시 반환 api
+  Future<chopper.Response<List<ArticleSummaryResponse>>>
+      articleDroneContentListGet() {
     generatedMapping.putIfAbsent(
-        PopularExpert, () => PopularExpert.fromJsonFactory);
+        ArticleSummaryResponse, () => ArticleSummaryResponse.fromJsonFactory);
 
-    return _expertPopularGet();
+    return _articleDroneContentListGet();
   }
 
-  ///메인화면 인기 조종사 api
-  @Get(path: '/expert/popular')
-  Future<chopper.Response<List<PopularExpert>>> _expertPopularGet();
-
-  ///
-  Future<chopper.Response<String>> sucessTestGet() {
-    return _sucessTestGet();
-  }
-
-  ///
-  @Get(path: '/sucess-test')
-  Future<chopper.Response<String>> _sucessTestGet();
-
-  ///
-  Future<chopper.Response<String>> expireTestGet() {
-    return _expireTestGet();
-  }
-
-  ///
-  @Get(path: '/expire-test')
-  Future<chopper.Response<String>> _expireTestGet();
-
-  ///
-  Future<chopper.Response<TokenRefreshDto>> reissuePost(
-      {required TokenRefreshDto? body}) {
-    generatedMapping.putIfAbsent(
-        TokenRefreshDto, () => TokenRefreshDto.fromJsonFactory);
-
-    return _reissuePost(body: body);
-  }
-
-  ///
-  @Post(
-    path: '/reissue',
-    optionalBody: true,
-  )
-  Future<chopper.Response<TokenRefreshDto>> _reissuePost(
-      {@Body() required TokenRefreshDto? body});
+  ///메인화면 드론 콘텐츠 더보기 클릭시 반환 api
+  @Get(path: '/article/drone-content/list')
+  Future<chopper.Response<List<ArticleSummaryResponse>>>
+      _articleDroneContentListGet();
 }
 
 typedef $JsonFactory<T> = T Function(Map<String, dynamic> json);
