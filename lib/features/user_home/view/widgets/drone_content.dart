@@ -45,8 +45,7 @@ class DroneContent extends StatelessWidget {
           SizedBox(
             height: 186,
             child: FutureBuilder(
-              future: mockClient.articleDroneContentSummaryGet(),
-              // future: client.articleDroneContentSummaryGet(),
+              future: client.articleDroneContentSummaryGet(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.none ||
                     snapshot.connectionState == ConnectionState.active ||
@@ -68,7 +67,7 @@ class DroneContent extends StatelessWidget {
                     article: data[index],
                   ),
                   separatorBuilder: (context, index) => const Gap(8),
-                  itemCount: 3,
+                  itemCount: data.length,
                 );
               },
             ),

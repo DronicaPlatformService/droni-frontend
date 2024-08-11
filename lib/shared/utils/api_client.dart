@@ -1,7 +1,6 @@
 import 'package:droni/shared/utils/custom_interceptor.dart';
 import 'package:chopper/chopper.dart';
 import 'package:droni/api/generated/client_index.dart';
-import 'package:droni/shared/utils/mock_open_api.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 final client = OpenAPI.create(
@@ -11,5 +10,3 @@ final client = OpenAPI.create(
     CustomInterceptor(),
   ],
 );
-
-final mockClient = MockOpenAPI();
