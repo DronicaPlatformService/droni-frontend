@@ -1,3 +1,4 @@
+import 'package:droni/features/find_expert/view/find_expert.dart';
 import 'package:flutter/material.dart';
 
 import 'package:droni/features/chat/view/chat_list_screen.dart';
@@ -36,7 +37,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
             ),
             Offstage(
               offstage: _selectedIndex != 1,
-              child: const Text('조종사 찾기'),
+              child: const FindExpert(),
             ),
             Offstage(
               offstage: _selectedIndex != 2,
