@@ -69,8 +69,9 @@ extension $TokenRefreshDtoExtension on TokenRefreshDto {
 @JsonSerializable(explicitToJson: true)
 class CreateChatRequest {
   const CreateChatRequest({
-    this.fromUserId,
-    this.toUserId,
+    this.toExpertId,
+    this.serviceId,
+    required this.serviceKind,
   });
 
   factory CreateChatRequest.fromJson(Map<String, dynamic> json) =>
@@ -79,22 +80,31 @@ class CreateChatRequest {
   static const toJsonFactory = _$CreateChatRequestToJson;
   Map<String, dynamic> toJson() => _$CreateChatRequestToJson(this);
 
-  @JsonKey(name: 'fromUserId')
-  final int? fromUserId;
-  @JsonKey(name: 'toUserId')
-  final int? toUserId;
+  @JsonKey(name: 'toExpertId')
+  final int? toExpertId;
+  @JsonKey(name: 'serviceId')
+  final int? serviceId;
+  @JsonKey(
+    name: 'serviceKind',
+    toJson: createChatRequestServiceKindToJson,
+    fromJson: createChatRequestServiceKindFromJson,
+  )
+  final enums.CreateChatRequestServiceKind serviceKind;
   static const fromJsonFactory = _$CreateChatRequestFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other is CreateChatRequest &&
-            (identical(other.fromUserId, fromUserId) ||
+            (identical(other.toExpertId, toExpertId) ||
                 const DeepCollectionEquality()
-                    .equals(other.fromUserId, fromUserId)) &&
-            (identical(other.toUserId, toUserId) ||
+                    .equals(other.toExpertId, toExpertId)) &&
+            (identical(other.serviceId, serviceId) ||
                 const DeepCollectionEquality()
-                    .equals(other.toUserId, toUserId)));
+                    .equals(other.serviceId, serviceId)) &&
+            (identical(other.serviceKind, serviceKind) ||
+                const DeepCollectionEquality()
+                    .equals(other.serviceKind, serviceKind)));
   }
 
   @override
@@ -102,23 +112,32 @@ class CreateChatRequest {
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(fromUserId) ^
-      const DeepCollectionEquality().hash(toUserId) ^
+      const DeepCollectionEquality().hash(toExpertId) ^
+      const DeepCollectionEquality().hash(serviceId) ^
+      const DeepCollectionEquality().hash(serviceKind) ^
       runtimeType.hashCode;
 }
 
 extension $CreateChatRequestExtension on CreateChatRequest {
-  CreateChatRequest copyWith({int? fromUserId, int? toUserId}) {
+  CreateChatRequest copyWith(
+      {int? toExpertId,
+      int? serviceId,
+      enums.CreateChatRequestServiceKind? serviceKind}) {
     return CreateChatRequest(
-        fromUserId: fromUserId ?? this.fromUserId,
-        toUserId: toUserId ?? this.toUserId);
+        toExpertId: toExpertId ?? this.toExpertId,
+        serviceId: serviceId ?? this.serviceId,
+        serviceKind: serviceKind ?? this.serviceKind);
   }
 
   CreateChatRequest copyWithWrapped(
-      {Wrapped<int?>? fromUserId, Wrapped<int?>? toUserId}) {
+      {Wrapped<int?>? toExpertId,
+      Wrapped<int?>? serviceId,
+      Wrapped<enums.CreateChatRequestServiceKind>? serviceKind}) {
     return CreateChatRequest(
-        fromUserId: (fromUserId != null ? fromUserId.value : this.fromUserId),
-        toUserId: (toUserId != null ? toUserId.value : this.toUserId));
+        toExpertId: (toExpertId != null ? toExpertId.value : this.toExpertId),
+        serviceId: (serviceId != null ? serviceId.value : this.serviceId),
+        serviceKind:
+            (serviceKind != null ? serviceKind.value : this.serviceKind));
   }
 }
 
@@ -183,42 +202,41 @@ extension $DroniFileResponseExtension on DroniFileResponse {
 }
 
 @JsonSerializable(explicitToJson: true)
-class PilotProfile {
-  const PilotProfile({
+class ExpertProfile {
+  const ExpertProfile({
     this.expertId,
     this.score,
-    this.nickName,
+    this.name,
     this.imageUrl,
   });
 
-  factory PilotProfile.fromJson(Map<String, dynamic> json) =>
-      _$PilotProfileFromJson(json);
+  factory ExpertProfile.fromJson(Map<String, dynamic> json) =>
+      _$ExpertProfileFromJson(json);
 
-  static const toJsonFactory = _$PilotProfileToJson;
-  Map<String, dynamic> toJson() => _$PilotProfileToJson(this);
+  static const toJsonFactory = _$ExpertProfileToJson;
+  Map<String, dynamic> toJson() => _$ExpertProfileToJson(this);
 
   @JsonKey(name: 'expertId')
   final int? expertId;
   @JsonKey(name: 'score')
   final double? score;
-  @JsonKey(name: 'nickName')
-  final String? nickName;
+  @JsonKey(name: 'name')
+  final String? name;
   @JsonKey(name: 'imageUrl')
   final String? imageUrl;
-  static const fromJsonFactory = _$PilotProfileFromJson;
+  static const fromJsonFactory = _$ExpertProfileFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is PilotProfile &&
+        (other is ExpertProfile &&
             (identical(other.expertId, expertId) ||
                 const DeepCollectionEquality()
                     .equals(other.expertId, expertId)) &&
             (identical(other.score, score) ||
                 const DeepCollectionEquality().equals(other.score, score)) &&
-            (identical(other.nickName, nickName) ||
-                const DeepCollectionEquality()
-                    .equals(other.nickName, nickName)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.imageUrl, imageUrl) ||
                 const DeepCollectionEquality()
                     .equals(other.imageUrl, imageUrl)));
@@ -231,30 +249,30 @@ class PilotProfile {
   int get hashCode =>
       const DeepCollectionEquality().hash(expertId) ^
       const DeepCollectionEquality().hash(score) ^
-      const DeepCollectionEquality().hash(nickName) ^
+      const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(imageUrl) ^
       runtimeType.hashCode;
 }
 
-extension $PilotProfileExtension on PilotProfile {
-  PilotProfile copyWith(
-      {int? expertId, double? score, String? nickName, String? imageUrl}) {
-    return PilotProfile(
+extension $ExpertProfileExtension on ExpertProfile {
+  ExpertProfile copyWith(
+      {int? expertId, double? score, String? name, String? imageUrl}) {
+    return ExpertProfile(
         expertId: expertId ?? this.expertId,
         score: score ?? this.score,
-        nickName: nickName ?? this.nickName,
+        name: name ?? this.name,
         imageUrl: imageUrl ?? this.imageUrl);
   }
 
-  PilotProfile copyWithWrapped(
+  ExpertProfile copyWithWrapped(
       {Wrapped<int?>? expertId,
       Wrapped<double?>? score,
-      Wrapped<String?>? nickName,
+      Wrapped<String?>? name,
       Wrapped<String?>? imageUrl}) {
-    return PilotProfile(
+    return ExpertProfile(
         expertId: (expertId != null ? expertId.value : this.expertId),
         score: (score != null ? score.value : this.score),
-        nickName: (nickName != null ? nickName.value : this.nickName),
+        name: (name != null ? name.value : this.name),
         imageUrl: (imageUrl != null ? imageUrl.value : this.imageUrl));
   }
 }
@@ -266,7 +284,6 @@ class ChatMessage {
     this.chatroomId,
     this.repliedMessageId,
     this.content,
-    this.filePath,
     this.timestamp,
   });
 
@@ -284,8 +301,6 @@ class ChatMessage {
   final int? repliedMessageId;
   @JsonKey(name: 'content')
   final String? content;
-  @JsonKey(name: 'filePath')
-  final String? filePath;
   @JsonKey(name: 'timestamp')
   final DateTime? timestamp;
   static const fromJsonFactory = _$ChatMessageFromJson;
@@ -306,9 +321,6 @@ class ChatMessage {
             (identical(other.content, content) ||
                 const DeepCollectionEquality()
                     .equals(other.content, content)) &&
-            (identical(other.filePath, filePath) ||
-                const DeepCollectionEquality()
-                    .equals(other.filePath, filePath)) &&
             (identical(other.timestamp, timestamp) ||
                 const DeepCollectionEquality()
                     .equals(other.timestamp, timestamp)));
@@ -323,7 +335,6 @@ class ChatMessage {
       const DeepCollectionEquality().hash(chatroomId) ^
       const DeepCollectionEquality().hash(repliedMessageId) ^
       const DeepCollectionEquality().hash(content) ^
-      const DeepCollectionEquality().hash(filePath) ^
       const DeepCollectionEquality().hash(timestamp) ^
       runtimeType.hashCode;
 }
@@ -334,14 +345,12 @@ extension $ChatMessageExtension on ChatMessage {
       int? chatroomId,
       int? repliedMessageId,
       String? content,
-      String? filePath,
       DateTime? timestamp}) {
     return ChatMessage(
         messageId: messageId ?? this.messageId,
         chatroomId: chatroomId ?? this.chatroomId,
         repliedMessageId: repliedMessageId ?? this.repliedMessageId,
         content: content ?? this.content,
-        filePath: filePath ?? this.filePath,
         timestamp: timestamp ?? this.timestamp);
   }
 
@@ -350,7 +359,6 @@ extension $ChatMessageExtension on ChatMessage {
       Wrapped<int?>? chatroomId,
       Wrapped<int?>? repliedMessageId,
       Wrapped<String?>? content,
-      Wrapped<String?>? filePath,
       Wrapped<DateTime?>? timestamp}) {
     return ChatMessage(
         messageId: (messageId != null ? messageId.value : this.messageId),
@@ -359,14 +367,13 @@ extension $ChatMessageExtension on ChatMessage {
             ? repliedMessageId.value
             : this.repliedMessageId),
         content: (content != null ? content.value : this.content),
-        filePath: (filePath != null ? filePath.value : this.filePath),
         timestamp: (timestamp != null ? timestamp.value : this.timestamp));
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class UserChatroom {
-  const UserChatroom({
+class UserChatroomResponse {
+  const UserChatroomResponse({
     this.expertId,
     this.expertName,
     this.expertScore,
@@ -375,11 +382,11 @@ class UserChatroom {
     this.lastTimestamp,
   });
 
-  factory UserChatroom.fromJson(Map<String, dynamic> json) =>
-      _$UserChatroomFromJson(json);
+  factory UserChatroomResponse.fromJson(Map<String, dynamic> json) =>
+      _$UserChatroomResponseFromJson(json);
 
-  static const toJsonFactory = _$UserChatroomToJson;
-  Map<String, dynamic> toJson() => _$UserChatroomToJson(this);
+  static const toJsonFactory = _$UserChatroomResponseToJson;
+  Map<String, dynamic> toJson() => _$UserChatroomResponseToJson(this);
 
   @JsonKey(name: 'expertId')
   final int? expertId;
@@ -393,12 +400,12 @@ class UserChatroom {
   final String? lastMessage;
   @JsonKey(name: 'lastTimestamp')
   final DateTime? lastTimestamp;
-  static const fromJsonFactory = _$UserChatroomFromJson;
+  static const fromJsonFactory = _$UserChatroomResponseFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is UserChatroom &&
+        (other is UserChatroomResponse &&
             (identical(other.expertId, expertId) ||
                 const DeepCollectionEquality()
                     .equals(other.expertId, expertId)) &&
@@ -433,15 +440,15 @@ class UserChatroom {
       runtimeType.hashCode;
 }
 
-extension $UserChatroomExtension on UserChatroom {
-  UserChatroom copyWith(
+extension $UserChatroomResponseExtension on UserChatroomResponse {
+  UserChatroomResponse copyWith(
       {int? expertId,
       String? expertName,
       double? expertScore,
       String? expertAddr,
       String? lastMessage,
       DateTime? lastTimestamp}) {
-    return UserChatroom(
+    return UserChatroomResponse(
         expertId: expertId ?? this.expertId,
         expertName: expertName ?? this.expertName,
         expertScore: expertScore ?? this.expertScore,
@@ -450,14 +457,14 @@ extension $UserChatroomExtension on UserChatroom {
         lastTimestamp: lastTimestamp ?? this.lastTimestamp);
   }
 
-  UserChatroom copyWithWrapped(
+  UserChatroomResponse copyWithWrapped(
       {Wrapped<int?>? expertId,
       Wrapped<String?>? expertName,
       Wrapped<double?>? expertScore,
       Wrapped<String?>? expertAddr,
       Wrapped<String?>? lastMessage,
       Wrapped<DateTime?>? lastTimestamp}) {
-    return UserChatroom(
+    return UserChatroomResponse(
         expertId: (expertId != null ? expertId.value : this.expertId),
         expertName: (expertName != null ? expertName.value : this.expertName),
         expertScore:
@@ -467,6 +474,88 @@ extension $UserChatroomExtension on UserChatroom {
             (lastMessage != null ? lastMessage.value : this.lastMessage),
         lastTimestamp:
             (lastTimestamp != null ? lastTimestamp.value : this.lastTimestamp));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ArticleDetailResponse {
+  const ArticleDetailResponse({
+    this.displayImagePath,
+    this.title,
+    this.createdDate,
+    this.content,
+  });
+
+  factory ArticleDetailResponse.fromJson(Map<String, dynamic> json) =>
+      _$ArticleDetailResponseFromJson(json);
+
+  static const toJsonFactory = _$ArticleDetailResponseToJson;
+  Map<String, dynamic> toJson() => _$ArticleDetailResponseToJson(this);
+
+  @JsonKey(name: 'displayImagePath')
+  final String? displayImagePath;
+  @JsonKey(name: 'title')
+  final String? title;
+  @JsonKey(name: 'createdDate')
+  final DateTime? createdDate;
+  @JsonKey(name: 'content')
+  final String? content;
+  static const fromJsonFactory = _$ArticleDetailResponseFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is ArticleDetailResponse &&
+            (identical(other.displayImagePath, displayImagePath) ||
+                const DeepCollectionEquality()
+                    .equals(other.displayImagePath, displayImagePath)) &&
+            (identical(other.title, title) ||
+                const DeepCollectionEquality().equals(other.title, title)) &&
+            (identical(other.createdDate, createdDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.createdDate, createdDate)) &&
+            (identical(other.content, content) ||
+                const DeepCollectionEquality().equals(other.content, content)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(displayImagePath) ^
+      const DeepCollectionEquality().hash(title) ^
+      const DeepCollectionEquality().hash(createdDate) ^
+      const DeepCollectionEquality().hash(content) ^
+      runtimeType.hashCode;
+}
+
+extension $ArticleDetailResponseExtension on ArticleDetailResponse {
+  ArticleDetailResponse copyWith(
+      {String? displayImagePath,
+      String? title,
+      DateTime? createdDate,
+      String? content}) {
+    return ArticleDetailResponse(
+        displayImagePath: displayImagePath ?? this.displayImagePath,
+        title: title ?? this.title,
+        createdDate: createdDate ?? this.createdDate,
+        content: content ?? this.content);
+  }
+
+  ArticleDetailResponse copyWithWrapped(
+      {Wrapped<String?>? displayImagePath,
+      Wrapped<String?>? title,
+      Wrapped<DateTime?>? createdDate,
+      Wrapped<String?>? content}) {
+    return ArticleDetailResponse(
+        displayImagePath: (displayImagePath != null
+            ? displayImagePath.value
+            : this.displayImagePath),
+        title: (title != null ? title.value : this.title),
+        createdDate:
+            (createdDate != null ? createdDate.value : this.createdDate),
+        content: (content != null ? content.value : this.content));
   }
 }
 
@@ -529,6 +618,81 @@ extension $ArticleSummaryResponseExtension on ArticleSummaryResponse {
             ? articleSubject.value
             : this.articleSubject));
   }
+}
+
+String? createChatRequestServiceKindNullableToJson(
+    enums.CreateChatRequestServiceKind? createChatRequestServiceKind) {
+  return createChatRequestServiceKind?.value;
+}
+
+String? createChatRequestServiceKindToJson(
+    enums.CreateChatRequestServiceKind createChatRequestServiceKind) {
+  return createChatRequestServiceKind.value;
+}
+
+enums.CreateChatRequestServiceKind createChatRequestServiceKindFromJson(
+  Object? createChatRequestServiceKind, [
+  enums.CreateChatRequestServiceKind? defaultValue,
+]) {
+  return enums.CreateChatRequestServiceKind.values
+          .firstWhereOrNull((e) => e.value == createChatRequestServiceKind) ??
+      defaultValue ??
+      enums.CreateChatRequestServiceKind.swaggerGeneratedUnknown;
+}
+
+enums.CreateChatRequestServiceKind?
+    createChatRequestServiceKindNullableFromJson(
+  Object? createChatRequestServiceKind, [
+  enums.CreateChatRequestServiceKind? defaultValue,
+]) {
+  if (createChatRequestServiceKind == null) {
+    return null;
+  }
+  return enums.CreateChatRequestServiceKind.values
+          .firstWhereOrNull((e) => e.value == createChatRequestServiceKind) ??
+      defaultValue;
+}
+
+String createChatRequestServiceKindExplodedListToJson(
+    List<enums.CreateChatRequestServiceKind>? createChatRequestServiceKind) {
+  return createChatRequestServiceKind?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> createChatRequestServiceKindListToJson(
+    List<enums.CreateChatRequestServiceKind>? createChatRequestServiceKind) {
+  if (createChatRequestServiceKind == null) {
+    return [];
+  }
+
+  return createChatRequestServiceKind.map((e) => e.value!).toList();
+}
+
+List<enums.CreateChatRequestServiceKind>
+    createChatRequestServiceKindListFromJson(
+  List? createChatRequestServiceKind, [
+  List<enums.CreateChatRequestServiceKind>? defaultValue,
+]) {
+  if (createChatRequestServiceKind == null) {
+    return defaultValue ?? [];
+  }
+
+  return createChatRequestServiceKind
+      .map((e) => createChatRequestServiceKindFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.CreateChatRequestServiceKind>?
+    createChatRequestServiceKindNullableListFromJson(
+  List? createChatRequestServiceKind, [
+  List<enums.CreateChatRequestServiceKind>? defaultValue,
+]) {
+  if (createChatRequestServiceKind == null) {
+    return defaultValue;
+  }
+
+  return createChatRequestServiceKind
+      .map((e) => createChatRequestServiceKindFromJson(e.toString()))
+      .toList();
 }
 
 String? articleHowToUseSummaryGetArticleTargetNullableToJson(

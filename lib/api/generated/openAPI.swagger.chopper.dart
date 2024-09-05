@@ -32,17 +32,14 @@ final class _$OpenAPI extends OpenAPI {
   }
 
   @override
-  Future<Response<int>> _chatPost(
-      {required CreateChatRequest? createChatRequest}) {
+  Future<Response<int>> _chatPost({required CreateChatRequest? body}) {
     final Uri $url = Uri.parse('/chat');
-    final Map<String, dynamic> $params = <String, dynamic>{
-      'createChatRequest': createChatRequest
-    };
+    final $body = body;
     final Request $request = Request(
       'POST',
       $url,
       client.baseUrl,
-      parameters: $params,
+      body: $body,
     );
     return client.send<int, int>($request);
   }
@@ -81,38 +78,56 @@ final class _$OpenAPI extends OpenAPI {
   }
 
   @override
-  Future<Response<List<PilotProfile>>> _expertHomePopularExpertGet() {
+  Future<Response<List<ExpertProfile>>> _expertHomePopularExpertGet() {
     final Uri $url = Uri.parse('/expert/home/popular-expert');
     final Request $request = Request(
       'GET',
       $url,
       client.baseUrl,
     );
-    return client.send<List<PilotProfile>, PilotProfile>($request);
+    return client.send<List<ExpertProfile>, ExpertProfile>($request);
   }
 
   @override
-  Future<Response<List<ChatMessage>>> _chatHistoryChatroomIdGet(
-      {required int? chatroomId}) {
+  Future<Response<List<ChatMessage>>> _chatHistoryChatroomIdGet({
+    required int? chatroomId,
+    int? fromMessageId,
+  }) {
     final Uri $url = Uri.parse('/chat/history/${chatroomId}');
+    final Map<String, dynamic> $params = <String, dynamic>{
+      'fromMessageId': fromMessageId
+    };
     final Request $request = Request(
       'GET',
       $url,
       client.baseUrl,
+      parameters: $params,
     );
     return client.send<List<ChatMessage>, ChatMessage>($request);
   }
 
   @override
-  Future<Response<List<UserChatroom>>> _chatChatroomUserIdGet(
-      {required int? userId}) {
-    final Uri $url = Uri.parse('/chat/chatroom/${userId}');
+  Future<Response<List<UserChatroomResponse>>> _chatChatroomGet() {
+    final Uri $url = Uri.parse('/chat/chatroom');
     final Request $request = Request(
       'GET',
       $url,
       client.baseUrl,
     );
-    return client.send<List<UserChatroom>, UserChatroom>($request);
+    return client
+        .send<List<UserChatroomResponse>, UserChatroomResponse>($request);
+  }
+
+  @override
+  Future<Response<ArticleDetailResponse>> _articleArticleIdGet(
+      {required int? articleId}) {
+    final Uri $url = Uri.parse('/article/${articleId}');
+    final Request $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+    );
+    return client.send<ArticleDetailResponse, ArticleDetailResponse>($request);
   }
 
   @override

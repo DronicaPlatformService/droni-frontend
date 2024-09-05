@@ -20,14 +20,16 @@ Map<String, dynamic> _$TokenRefreshDtoToJson(TokenRefreshDto instance) =>
 
 CreateChatRequest _$CreateChatRequestFromJson(Map<String, dynamic> json) =>
     CreateChatRequest(
-      fromUserId: json['fromUserId'] as int?,
-      toUserId: json['toUserId'] as int?,
+      toExpertId: json['toExpertId'] as int?,
+      serviceId: json['serviceId'] as int?,
+      serviceKind: createChatRequestServiceKindFromJson(json['serviceKind']),
     );
 
 Map<String, dynamic> _$CreateChatRequestToJson(CreateChatRequest instance) =>
     <String, dynamic>{
-      'fromUserId': instance.fromUserId,
-      'toUserId': instance.toUserId,
+      'toExpertId': instance.toExpertId,
+      'serviceId': instance.serviceId,
+      'serviceKind': createChatRequestServiceKindToJson(instance.serviceKind),
     };
 
 DroniFileResponse _$DroniFileResponseFromJson(Map<String, dynamic> json) =>
@@ -44,18 +46,19 @@ Map<String, dynamic> _$DroniFileResponseToJson(DroniFileResponse instance) =>
       'path': instance.path,
     };
 
-PilotProfile _$PilotProfileFromJson(Map<String, dynamic> json) => PilotProfile(
+ExpertProfile _$ExpertProfileFromJson(Map<String, dynamic> json) =>
+    ExpertProfile(
       expertId: json['expertId'] as int?,
       score: (json['score'] as num?)?.toDouble(),
-      nickName: json['nickName'] as String?,
+      name: json['name'] as String?,
       imageUrl: json['imageUrl'] as String?,
     );
 
-Map<String, dynamic> _$PilotProfileToJson(PilotProfile instance) =>
+Map<String, dynamic> _$ExpertProfileToJson(ExpertProfile instance) =>
     <String, dynamic>{
       'expertId': instance.expertId,
       'score': instance.score,
-      'nickName': instance.nickName,
+      'name': instance.name,
       'imageUrl': instance.imageUrl,
     };
 
@@ -64,7 +67,6 @@ ChatMessage _$ChatMessageFromJson(Map<String, dynamic> json) => ChatMessage(
       chatroomId: json['chatroomId'] as int?,
       repliedMessageId: json['repliedMessageId'] as int?,
       content: json['content'] as String?,
-      filePath: json['filePath'] as String?,
       timestamp: json['timestamp'] == null
           ? null
           : DateTime.parse(json['timestamp'] as String),
@@ -76,11 +78,12 @@ Map<String, dynamic> _$ChatMessageToJson(ChatMessage instance) =>
       'chatroomId': instance.chatroomId,
       'repliedMessageId': instance.repliedMessageId,
       'content': instance.content,
-      'filePath': instance.filePath,
       'timestamp': instance.timestamp?.toIso8601String(),
     };
 
-UserChatroom _$UserChatroomFromJson(Map<String, dynamic> json) => UserChatroom(
+UserChatroomResponse _$UserChatroomResponseFromJson(
+        Map<String, dynamic> json) =>
+    UserChatroomResponse(
       expertId: json['expertId'] as int?,
       expertName: json['expertName'] as String?,
       expertScore: (json['expertScore'] as num?)?.toDouble(),
@@ -91,7 +94,8 @@ UserChatroom _$UserChatroomFromJson(Map<String, dynamic> json) => UserChatroom(
           : DateTime.parse(json['lastTimestamp'] as String),
     );
 
-Map<String, dynamic> _$UserChatroomToJson(UserChatroom instance) =>
+Map<String, dynamic> _$UserChatroomResponseToJson(
+        UserChatroomResponse instance) =>
     <String, dynamic>{
       'expertId': instance.expertId,
       'expertName': instance.expertName,
@@ -99,6 +103,26 @@ Map<String, dynamic> _$UserChatroomToJson(UserChatroom instance) =>
       'expertAddr': instance.expertAddr,
       'lastMessage': instance.lastMessage,
       'lastTimestamp': instance.lastTimestamp?.toIso8601String(),
+    };
+
+ArticleDetailResponse _$ArticleDetailResponseFromJson(
+        Map<String, dynamic> json) =>
+    ArticleDetailResponse(
+      displayImagePath: json['displayImagePath'] as String?,
+      title: json['title'] as String?,
+      createdDate: json['createdDate'] == null
+          ? null
+          : DateTime.parse(json['createdDate'] as String),
+      content: json['content'] as String?,
+    );
+
+Map<String, dynamic> _$ArticleDetailResponseToJson(
+        ArticleDetailResponse instance) =>
+    <String, dynamic>{
+      'displayImagePath': instance.displayImagePath,
+      'title': instance.title,
+      'createdDate': instance.createdDate?.toIso8601String(),
+      'content': instance.content,
     };
 
 ArticleSummaryResponse _$ArticleSummaryResponseFromJson(
