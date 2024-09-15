@@ -66,24 +66,17 @@ abstract class OpenAPI extends ChopperService {
       {@Body() required TokenRefreshDto? body});
 
   ///채탱방을 생성하는 api
-  ///@param createChatRequest
-  Future<chopper.Response<int>> chatPost(
-      {required CreateChatRequest? createChatRequest}) {
-    generatedMapping.putIfAbsent(
-        CreateChatRequest, () => CreateChatRequest.fromJsonFactory);
-
-    return _chatPost(createChatRequest: createChatRequest);
+  Future<chopper.Response<int>> chatPost({required CreateChatRequest? body}) {
+    return _chatPost(body: body);
   }
 
   ///채탱방을 생성하는 api
-  ///@param createChatRequest
   @Post(
     path: '/chat',
     optionalBody: true,
   )
   Future<chopper.Response<int>> _chatPost(
-      {@Query('createChatRequest')
-      required CreateChatRequest? createChatRequest});
+      {@Body() required CreateChatRequest? body});
 
   ///
   Future<chopper.Response<String>> successTestGet() {
@@ -116,48 +109,67 @@ abstract class OpenAPI extends ChopperService {
   Future<chopper.Response<String>> _expireTestGet();
 
   ///홈 화면 인기 조종사 api
-  Future<chopper.Response<List<PilotProfile>>> expertHomePopularExpertGet() {
+  Future<chopper.Response<List<ExpertProfile>>> expertHomePopularExpertGet() {
     generatedMapping.putIfAbsent(
-        PilotProfile, () => PilotProfile.fromJsonFactory);
+        ExpertProfile, () => ExpertProfile.fromJsonFactory);
 
     return _expertHomePopularExpertGet();
   }
 
   ///홈 화면 인기 조종사 api
   @Get(path: '/expert/home/popular-expert')
-  Future<chopper.Response<List<PilotProfile>>> _expertHomePopularExpertGet();
+  Future<chopper.Response<List<ExpertProfile>>> _expertHomePopularExpertGet();
 
   ///이전 message 목록을 가져오는 api
   ///@param chatroomId
-  Future<chopper.Response<List<ChatMessage>>> chatHistoryChatroomIdGet(
-      {required int? chatroomId}) {
+  ///@param fromMessageId
+  Future<chopper.Response<List<ChatMessage>>> chatHistoryChatroomIdGet({
+    required int? chatroomId,
+    int? fromMessageId,
+  }) {
     generatedMapping.putIfAbsent(
         ChatMessage, () => ChatMessage.fromJsonFactory);
 
-    return _chatHistoryChatroomIdGet(chatroomId: chatroomId);
+    return _chatHistoryChatroomIdGet(
+        chatroomId: chatroomId, fromMessageId: fromMessageId);
   }
 
   ///이전 message 목록을 가져오는 api
   ///@param chatroomId
+  ///@param fromMessageId
   @Get(path: '/chat/history/{chatroomId}')
-  Future<chopper.Response<List<ChatMessage>>> _chatHistoryChatroomIdGet(
-      {@Path('chatroomId') required int? chatroomId});
+  Future<chopper.Response<List<ChatMessage>>> _chatHistoryChatroomIdGet({
+    @Path('chatroomId') required int? chatroomId,
+    @Query('fromMessageId') int? fromMessageId,
+  });
 
   ///유저의 채팅방 목록을 가져오는 api
-  ///@param userId
-  Future<chopper.Response<List<UserChatroom>>> chatChatroomUserIdGet(
-      {required int? userId}) {
+  Future<chopper.Response<List<UserChatroomResponse>>> chatChatroomGet() {
     generatedMapping.putIfAbsent(
-        UserChatroom, () => UserChatroom.fromJsonFactory);
+        UserChatroomResponse, () => UserChatroomResponse.fromJsonFactory);
 
-    return _chatChatroomUserIdGet(userId: userId);
+    return _chatChatroomGet();
   }
 
   ///유저의 채팅방 목록을 가져오는 api
-  ///@param userId
-  @Get(path: '/chat/chatroom/{userId}')
-  Future<chopper.Response<List<UserChatroom>>> _chatChatroomUserIdGet(
-      {@Path('userId') required int? userId});
+  @Get(path: '/chat/chatroom')
+  Future<chopper.Response<List<UserChatroomResponse>>> _chatChatroomGet();
+
+  ///아티클 상세보기
+  ///@param articleId
+  Future<chopper.Response<ArticleDetailResponse>> articleArticleIdGet(
+      {required int? articleId}) {
+    generatedMapping.putIfAbsent(
+        ArticleDetailResponse, () => ArticleDetailResponse.fromJsonFactory);
+
+    return _articleArticleIdGet(articleId: articleId);
+  }
+
+  ///아티클 상세보기
+  ///@param articleId
+  @Get(path: '/article/{articleId}')
+  Future<chopper.Response<ArticleDetailResponse>> _articleArticleIdGet(
+      {@Path('articleId') required int? articleId});
 
   ///메인화면에서 보여지는 활용백서 5개 반환 api
   ///@param articleTarget

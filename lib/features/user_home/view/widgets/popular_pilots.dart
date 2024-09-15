@@ -70,7 +70,7 @@ class PopularPilots extends StatelessWidget {
                         ),
                       const Gap(6),
                       Text(
-                        pilots[index].nickName ?? '조종사 이름 없음',
+                        pilots[index].name ?? '조종사 이름 없음',
                         style: system11.copyWith(color: AppColors.droniGray600),
                       ),
                     ],
