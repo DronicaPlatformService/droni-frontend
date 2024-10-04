@@ -55,6 +55,12 @@ class AppState extends State<App> {
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       // home: isLoggined ? const MainNavigationScreen() : const LoginScreen(),
+      builder: (context, child) {
+        return ScrollConfiguration(
+          behavior: ScrollBehavior().copyWith(overscroll: false),
+          child: child!,
+        );
+      },
       home: const LoginScreen(),
       // home: const MainNavigationScreen(),
     );
