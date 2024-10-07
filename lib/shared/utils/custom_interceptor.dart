@@ -26,19 +26,21 @@ class CustomInterceptor implements Interceptor {
       return false;
     }
 
-    final res = await client.reissuePost(
+    final response = await client.reissuePost(
       body: TokenRefreshDto(
         accessToken: accessToken,
         refreshToken: refreshToken,
       ),
     );
 
-    if (!res.isSuccessful) return false;
+    if (!response.isSuccessful) return false;
+    // TODO:이 부분 수정해야함
 
-    await storage.write(key: 'access_token', value: res.body?.accessToken);
-    await storage.write(key: 'refresh_token', value: res.body?.refreshToken);
+    await storage.write(key: 'access_token', value: response.body?.accessToken);
+    await storage.write(
+        key: 'refresh_token', value: response.body?.refreshToken);
 
-    return res.isSuccessful;
+    return response.isSuccessful;
   }
 
   Future<Request> _addAuthorizationHeader(Request request) async {
@@ -57,16 +59,6 @@ class CustomInterceptor implements Interceptor {
     var request = await _addAuthorizationHeader(chain.request);
 
     final response = await chain.proceed(request);
-
-    if (response.statusCode == 401) {
-      GlobalVariables.navigationKey.currentState?.pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => const LoginScreen(),
-        ),
-      );
-
-      return response;
-    }
 
     if (response.statusCode == 406) {
       final isReissued = await _reissueToken();
