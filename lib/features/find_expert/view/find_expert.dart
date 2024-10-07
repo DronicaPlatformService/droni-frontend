@@ -1,5 +1,6 @@
 import 'package:droni/features/find_expert/view/widgets/custom_chip.dart';
 import 'package:droni/features/find_expert/view/widgets/expert_card.dart';
+import 'package:droni/features/find_expert/view/widgets/region_search_sheet.dart';
 import 'package:droni/features/find_expert/view/widgets/region_sheet.dart';
 import 'package:droni/shared/constants/app_colors.dart';
 import 'package:droni/shared/constants/text_style.dart';
@@ -76,20 +77,35 @@ class _FindExpertState extends State<FindExpert> {
             padding: const EdgeInsets.symmetric(vertical: 12),
             child: Row(
               children: [
-                CustomChip(
-                  child: Row(
-                    children: [
-                      const Icon(
-                        Icons.star,
-                        color: AppColors.droniGray500,
-                      ),
-                      Text(
-                        "찜한 조종사",
-                        style: system08.copyWith(
-                          color: AppColors.droniGray500,
+                GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      clipBehavior: Clip.hardEdge,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(16),
                         ),
                       ),
-                    ],
+                      builder: (context) => RegionSearchSheet(),
+                    );
+                  },
+                  child: CustomChip(
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.star,
+                          color: AppColors.droniGray500,
+                        ),
+                        Text(
+                          "찜한 조종사",
+                          style: system08.copyWith(
+                            color: AppColors.droniGray500,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 const Gap(8),
