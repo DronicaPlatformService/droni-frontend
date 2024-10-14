@@ -44,6 +44,34 @@ class _FindExpertState extends State<FindExpert> {
     });
   }
 
+  void _onRegionSearchTap() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      clipBehavior: Clip.hardEdge,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(16),
+        ),
+      ),
+      builder: (context) => RegionSearchSheet(),
+    );
+  }
+
+  void _onRegionTap() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      clipBehavior: Clip.hardEdge,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(16),
+        ),
+      ),
+      builder: (context) => RegionSheet(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -78,19 +106,7 @@ class _FindExpertState extends State<FindExpert> {
             child: Row(
               children: [
                 GestureDetector(
-                  onTap: () {
-                    showModalBottomSheet(
-                      context: context,
-                      isScrollControlled: true,
-                      clipBehavior: Clip.hardEdge,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.vertical(
-                          top: Radius.circular(16),
-                        ),
-                      ),
-                      builder: (context) => RegionSearchSheet(),
-                    );
-                  },
+                  onTap: _onRegionSearchTap,
                   child: CustomChip(
                     child: Row(
                       children: [
@@ -110,19 +126,7 @@ class _FindExpertState extends State<FindExpert> {
                 ),
                 const Gap(8),
                 GestureDetector(
-                  onTap: () {
-                    showModalBottomSheet(
-                      context: context,
-                      isScrollControlled: true,
-                      clipBehavior: Clip.hardEdge,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.vertical(
-                          top: Radius.circular(16),
-                        ),
-                      ),
-                      builder: (context) => RegionSheet(),
-                    );
-                  },
+                  onTap: _onRegionTap,
                   child: CustomChip(
                     child: Text(
                       '주소',
